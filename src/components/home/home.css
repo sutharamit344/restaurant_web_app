@@ -1,0 +1,73 @@
+#hero-section{
+    height: 50vh;
+    background-color: #263b7a;
+    color: white;
+}
+
+#promo{
+    grid-column: 1/6;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+#instant-food{
+    grid-column: 6/ span 12;
+    display: flex;
+    justify-content: end;
+    height: 60vh;
+    position: absolute;
+    right: 15%;
+    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
+}
+#scroll-food{
+    width: 500px;
+    background-image: url("http://localhost:3000/assets/img/logo.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1rem;
+}
+.scroller{
+    width: 60%;
+    height: 90%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.arrw-btn {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    border-radius: 8px;
+}
+.arrw-btn:hover{
+    background-color: lightgray;
+    box-shadow: 1px 1px 4px white;
+}
+.card{
+    text-align: center;
+    transition: .5s;
+    padding: 3% 10%;
+}
+.dish-img{
+    background-color: white;
+    width: 38vh;
+    height: 38vh;
+    border-radius: 50%;
+    margin-bottom: 5vh;
+    overflow: hidden;
+    display: flex;
+    padding: 2vh;
+    transition:0.5s;
+}
+.dish-img img{
+    user-select: none;
+    border-radius: 50%;
+}
+
+.dish-img:hover{
+    padding: 3vh;
+}
