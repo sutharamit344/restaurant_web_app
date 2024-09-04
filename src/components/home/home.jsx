@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
-import { BsTranslate } from 'react-icons/bs';
+import Card from "../food_card/card"
 
 export const fastFoodItems = [
   {
@@ -84,7 +84,7 @@ useEffect(() => {
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
             <p className='p'>Experience the taste of luxury with our exquisite dishes made from the freshest ingredients.</p>
                 <h1>Order Over ₹299/- Get 50% Off</h1>
-                <button className='btn-yellow'>Order Foods</button>
+                <button className='btn-yellow' style={{marginRight:"1rem"}}>Order Foods</button>
             <button className='btn-yellow'>Reserve aTable</button>
             </div>
         <div id='instant-food'>
@@ -112,8 +112,11 @@ useEffect(() => {
             </div>
         </div>
     </section>
-    <section className='grid'>
+    <section id='week-special' className='grid'>
       <h1 className='h1'>This week's special</h1>
+      <div className='cards'>
+      <Card length="4"/>
+      </div>
     </section>
     </>
   )

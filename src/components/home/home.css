@@ -28,11 +28,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -1rem;
+    margin-top: -2rem;
 }
 .scroller{
     width: 60%;
-    height: 90%;
+    height: 85%;
     display: flex;
     overflow: hidden;
     border-radius: 50%;
@@ -47,7 +47,7 @@
     background-color: lightgray;
     box-shadow: 1px 1px 4px white;
 }
-.card{
+.scroller .card{
     text-align: center;
     transition: .5s;
     padding: 3% 10%;

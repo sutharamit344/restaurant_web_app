@@ -3,7 +3,7 @@ import "./header.css"
 
 export default function Header() {
   return (
-    <nav className='grid'>
+    <nav id='navbar' className='grid'>
       <a href="/" className='logo'>
         <img src="http://localhost:3000/assets/img/logo.png" alt='logo' />
         <h1>Restaurant</h1>

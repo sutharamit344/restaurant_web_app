@@ -10,7 +10,7 @@
   grid-template-columns:repeat(12, 1fr);
   grid-template-rows: auto;
   gap: 20px;
-  padding: 1rem 15%;
+  padding: 2rem 15%;
 }
 
 .btn{
@@ -51,4 +51,12 @@
 .btn-yellow:hover{
   border-color: #fde287;
   color: #000000;
+}
+.cards{
+  grid-column: 1/ span 12;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
+  padding: 1rem 0;
 }
