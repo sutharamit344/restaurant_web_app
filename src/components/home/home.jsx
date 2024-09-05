@@ -3,6 +3,7 @@ import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import Card from "../food_card/card"
 import ReviewCard from '../reviewcard/reviewcard';
+import EventCards from '../eventcard/eventcard';
 const domain = window.location;
 
 export const fastFoodItems = [
@@ -90,7 +91,7 @@ useEffect(() => {
             <button className='btn-yellow'>Reserve aTable</button>
             </div>
         <div id='instant-food'>
-            <div id='scroll-food'>
+            <div id='scroll-food' style={{backgroundImage: `url("${domain}assets/img/logo.png")`}}>
             <IoIosArrowBack className='arrw-btn' onClick={prevDishHandler}/>
           <div className='scroller'>
             {
@@ -111,15 +112,21 @@ useEffect(() => {
         </div>
     </section>
     <section id='week-special' className='grid'>
-      <h1 className='h1'>This week's special</h1>
+      <h1 className='h2'>This week's special</h1>
       <div className='cards'>
       <Card length="4"/>
       </div>
     </section>
     <section id='review-section' className='grid'>
-      <h1 className='h1'>Customer Review</h1>
+      <h1 className='h2'>Customer Review</h1>
       <div className='cards'>
       <ReviewCard length="4"/>
+      </div>
+      </section>
+    <section id='event-section' className='grid'>
+      <h1 className='h2'>Events</h1>
+      <div className='event-cards'>
+      <EventCards length="4"/>
       </div>
       </section>
     </>

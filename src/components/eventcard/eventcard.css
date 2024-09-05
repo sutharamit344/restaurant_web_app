@@ -1,0 +1,36 @@
+.event-cards{
+    grid-column: 1/ span 12;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 150px 150px;
+    gap: 20px;
+}
+.event-cards{
+    grid-column: 1/ span 12;
+
+}
+.event-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    border-bottom: 4px solid #263b7a;
+    color: white;
+}
+.event-header{
+    display: flex;
+    justify-content: space-between;
+}
+.event-content{
+    padding: 1rem;
+    background: linear-gradient(to bottom, transparent, black);
+}
+.event-des{
+    height: 0px;
+    overflow: hidden;
+}
+.event-card:hover .event-des{
+    height: auto;
+}

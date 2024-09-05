@@ -82,6 +82,7 @@ export default function reviewcard(props) {
                     <p className='card-p'>
                         {rev.comment}
                     </p>
+                    <p className='card-p card-date'>{rev.date}</p>
                 </div>
             )
         })

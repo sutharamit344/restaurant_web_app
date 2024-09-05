@@ -19,7 +19,6 @@
     position: absolute;
     bottom: 0px;
     padding: 1rem;
-    padding-bottom: -1rem;
     color: white;
 }
 .card-img img{
@@ -54,4 +53,7 @@
 .card-btn{
     position:absolute;
     bottom: 1rem;
+}
+.card-date{
+    text-align: right;
 }

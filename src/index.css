@@ -4,8 +4,9 @@
   box-sizing: border-box;
   font-family: arial;
   user-select: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
-
 .grid{
   display: grid;
   grid-template-columns:repeat(12, 1fr);
@@ -30,6 +31,11 @@
 }
 .h1{
   font-size: 48px;
+  text-wrap: nowrap;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.h2{
+  font-size: 32px;
   text-wrap: nowrap;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }

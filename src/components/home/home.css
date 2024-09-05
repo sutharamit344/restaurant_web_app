@@ -14,14 +14,13 @@
     grid-column: 6/ span 12;
     display: flex;
     justify-content: end;
-    height: 60vh;
+    height: 58vh;
     position: absolute;
     right: 15%;
     filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
 }
 #scroll-food{
     width: 500px;
-    background-image: url("http://localhost:3000/assets/img/logo.png");
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: bottom;
