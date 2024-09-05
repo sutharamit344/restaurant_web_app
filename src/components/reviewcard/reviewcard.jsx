@@ -1,6 +1,7 @@
 import React from 'react'
 import "./reviewcard.css"
 import { FaStar } from "react-icons/fa6";
+const domain = window.location;
 
 export const RatingStar = ({rating}) => {
   const stars = [];
@@ -14,11 +15,13 @@ export const RatingStar = ({rating}) => {
   return <div>{stars}</div>;
 }
 
+
+
 const restaurantReviews = [
     {
       id: 1,
       reviewerName: "Amit Kumar",
-      reviewerImage: "http://localhost:3000/assets/reviewverimg/amit.png",
+      reviewerImage: "assets/reviewverimg/amit.png",
       rating: 4,
       comment: "Great food and ambiance. The service was a bit slow, but overall a good experience!",
       date: "2024-09-01"
@@ -26,7 +29,7 @@ const restaurantReviews = [
     {
       id: 2,
       reviewerName: "Riya Sharma",
-      reviewerImage: "http://localhost:3000/assets/reviewverimg/riya.png",
+      reviewerImage: "assets/reviewverimg/riya.png",
       rating: 4,
       comment: "Amazing seafood! The flavors were spot on and the staff was very friendly.",
       date: "2024-08-28"
@@ -34,7 +37,7 @@ const restaurantReviews = [
     {
       id: 3,
       reviewerName: "Vikram Patel",
-      reviewerImage: "http://localhost:3000/assets/reviewverimg/vikram.png",
+      reviewerImage: "assets/reviewverimg/vikram.png",
       rating: 3,
       comment: "The place has a cool vibe, but the food was just average. Could improve on the taste.",
       date: "2024-08-25"
@@ -42,7 +45,7 @@ const restaurantReviews = [
     {
       id: 4,
       reviewerName: "Neha Gupta",
-      reviewerImage: "http://localhost:3000/assets/reviewverimg/neha.png",
+      reviewerImage: "assets/reviewverimg/neha.png",
       rating: 4,
       comment: "Loved the coffee and desserts! A perfect spot to chill with friends.",
       date: "2024-08-22"
@@ -50,7 +53,7 @@ const restaurantReviews = [
     {
       id: 5,
       reviewerName: "Rohit Singh",
-      reviewerImage: "http://localhost:3000/assets/reviewverimg/rohit.png",
+      reviewerImage: "assets/reviewverimg/rohit.png",
       rating: 4,
       comment: "Authentic Indian flavors with a modern twist. Highly recommend the butter chicken!",
       date: "2024-08-20"
@@ -70,7 +73,7 @@ export default function reviewcard(props) {
             return (
                 <div key={i} className='review-card'>
                     <div className='review-img'>
-                        <img src={rev.reviewerImage} alt={rev.reviewerName} />
+                        <img src={domain+rev.reviewerImage} alt={rev.reviewerName} />
                     </div>
                     <h3 className='review-title'>{rev.reviewerName}</h3>
                     <div className='review-star'>

@@ -3,57 +3,58 @@ import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import Card from "../food_card/card"
 import ReviewCard from '../reviewcard/reviewcard';
+const domain = window.location;
 
 export const fastFoodItems = [
   {
     id: 1,
     name: "Cheeseburger",
-    imageUrl: "http://localhost:3000/assets/fastfood/cheeseburger.png"
+    imageUrl: "assets/fastfood/cheeseburger.png"
   },
   {
     id: 2,
     name: "Pepperoni Pizza",
-    imageUrl: "http://localhost:3000/assets/fastfood/pepperoni_pizza.png"
+    imageUrl: "assets/fastfood/pepperoni_pizza.png"
   },
   {
     id: 3,
     name: "French Fries",
-    imageUrl: "http://localhost:3000/assets/fastfood/french_friies.png"
+    imageUrl: "assets/fastfood/french_friies.png"
   },
   {
     id: 4,
     name: "Fried Rice",
-    imageUrl: "http://localhost:3000/assets/fastfood/fried_rice.png"
+    imageUrl: "assets/fastfood/fried_rice.png"
   },
   {
     id: 5,
     name: "Vadapav",
-    imageUrl: "http://localhost:3000/assets/fastfood/vadapav.png"
+    imageUrl: "assets/fastfood/vadapav.png"
   },
   {
     id: 6,
     name: "Taco",
-    imageUrl: "http://localhost:3000/assets/fastfood/taco.png"
+    imageUrl: "assets/fastfood/taco.png"
   },
   {
     id: 7,
     name: "Sub Sandwich",
-    imageUrl: "http://localhost:3000/assets/fastfood/subsendwich.png"
+    imageUrl: "assets/fastfood/subsendwich.png"
   },
   {
     id: 8,
     name: "Nuggets",
-    imageUrl: "http://localhost:3000/assets/fastfood/nuddles.png"
+    imageUrl: "assets/fastfood/nuddles.png"
   },
   {
     id: 9,
     name: "Onion Rings",
-    imageUrl: "http://localhost:3000/assets/fastfood/onian_ring.png"
+    imageUrl: "assets/fastfood/onian_ring.png"
   },
   {
     id: 10,
     name: "Milkshake",
-    imageUrl: "http://localhost:3000/assets/fastfood/milkshake.png"
+    imageUrl: "assets/fastfood/milkshake.png"
   }
 ];
 
@@ -90,16 +91,14 @@ useEffect(() => {
             </div>
         <div id='instant-food'>
             <div id='scroll-food'>
-          <div onClick={prevDishHandler}>
-            <IoIosArrowBack className='arrw-btn'/>
-          </div>
+            <IoIosArrowBack className='arrw-btn' onClick={prevDishHandler}/>
           <div className='scroller'>
             {
               fastFoodItems.map((dish, i) => {
                 return (
                   <div key={i} className='card' style={{transform:`translatex(-${nextDish*100}%)`}}>
                   <div className='dish-img' style={{transform:`rotatez(-${nextDish*360}deg)`}}>
-                  <img src={dish.imageUrl} alt="fast food"/>
+                  <img src={domain+dish.imageUrl} alt="fast food"/>
                   </div>
                   <h2>{dish.name}</h2>
                   </div>
@@ -107,9 +106,7 @@ useEffect(() => {
               })
             }
           </div>
-          <div onClick={nextDishHandler}>
-            <IoIosArrowForward className='arrw-btn'/>
-          </div>
+            <IoIosArrowForward className='arrw-btn' onClick={nextDishHandler}/>
             </div>
         </div>
     </section>

@@ -64,7 +64,6 @@
     transition:0.5s;
 }
 .dish-img img{
-    user-select: none;
     border-radius: 50%;
 }
 .dish-img:hover{

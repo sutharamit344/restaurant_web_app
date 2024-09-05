@@ -2,10 +2,13 @@ import React from 'react'
 import "./header.css"
 
 export default function Header() {
+  
+const url = window.location+"assets/img/logo.png";
+
   return (
     <nav id='navbar' className='grid'>
       <a href="/" className='logo'>
-        <img src="http://localhost:3000/assets/img/logo.png" alt='logo' />
+        <img src={url} alt='logo' />
         <h1>Restaurant</h1>
       </a>
       <ul className='nav-links'>
