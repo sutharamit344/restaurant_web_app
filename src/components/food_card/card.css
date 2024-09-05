@@ -3,6 +3,9 @@
     border-bottom: 4px solid #263b7a;
     border-radius: 1rem;
     overflow: hidden;
+    position:relative;
+    padding-bottom: 1rem;
+    transform: 0.5s;
 }
 .card-img{
     border-radius: 1rem;
@@ -27,6 +30,9 @@
 .cards .card:hover img{
     transform: scale(104%);
 }
+.cards .card:hover{
+    box-shadow: 1px 1px 5px rgb(70, 70, 70);
+}
 .card-detail{
     padding: 1rem;
 }
@@ -41,4 +47,11 @@
 }
 .card-price{
     color: brown;
+}
+.card p{
+    padding: .5rem 0;
+}
+.card-btn{
+    position:absolute;
+    bottom: 1rem;
 }

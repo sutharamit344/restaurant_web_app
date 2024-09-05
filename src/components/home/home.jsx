@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import Card from "../food_card/card"
+import ReviewCard from '../reviewcard/reviewcard';
 
 export const fastFoodItems = [
   {
@@ -118,6 +119,12 @@ useEffect(() => {
       <Card length="4"/>
       </div>
     </section>
+    <section id='review-section' className='grid'>
+      <h1 className='h1'>Customer Review</h1>
+      <div className='cards'>
+      <ReviewCard length="4"/>
+      </div>
+      </section>
     </>
   )
 }

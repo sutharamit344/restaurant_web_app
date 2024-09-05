@@ -1,0 +1,36 @@
+
+#review-section{
+    background-color: #263b7a;
+    color: white;
+}
+.review-card{
+    text-align: center;
+    padding: 1.5rem;
+    display: grid;
+    row-gap: .5rem;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    border-bottom: 4px solid #ffc61b;
+    box-shadow: 1px 1px 5px black;
+    transition: .5s;
+}
+.review-card:hover{
+    padding: 1.2rem;
+    margin: 0.3rem;
+}
+.review-img{
+    width: 10vh;
+    height: 10vh;
+    margin: auto;
+    border-radius: 50%;
+    background-color: gray;
+    border: 2px solid #ffc61b;
+    overflow: hidden;
+}
+.review-star{
+    color: gray;
+}
+.review-img img{
+    width: 100%;
+}

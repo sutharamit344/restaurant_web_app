@@ -1,0 +1,88 @@
+import React from 'react'
+import "./reviewcard.css"
+import { FaStar } from "react-icons/fa6";
+
+export const RatingStar = ({rating}) => {
+  const stars = [];
+
+  for (let i = 1; i <= 5; i++) {
+    stars.push(
+      <FaStar key={i} color={i <= rating ? "#ffc61b" : "gray"} />
+    );
+  }
+
+  return <div>{stars}</div>;
+}
+
+const restaurantReviews = [
+    {
+      id: 1,
+      reviewerName: "Amit Kumar",
+      reviewerImage: "http://localhost:3000/assets/reviewverimg/amit.png",
+      rating: 4,
+      comment: "Great food and ambiance. The service was a bit slow, but overall a good experience!",
+      date: "2024-09-01"
+    },
+    {
+      id: 2,
+      reviewerName: "Riya Sharma",
+      reviewerImage: "http://localhost:3000/assets/reviewverimg/riya.png",
+      rating: 4,
+      comment: "Amazing seafood! The flavors were spot on and the staff was very friendly.",
+      date: "2024-08-28"
+    },
+    {
+      id: 3,
+      reviewerName: "Vikram Patel",
+      reviewerImage: "http://localhost:3000/assets/reviewverimg/vikram.png",
+      rating: 3,
+      comment: "The place has a cool vibe, but the food was just average. Could improve on the taste.",
+      date: "2024-08-25"
+    },
+    {
+      id: 4,
+      reviewerName: "Neha Gupta",
+      reviewerImage: "http://localhost:3000/assets/reviewverimg/neha.png",
+      rating: 4,
+      comment: "Loved the coffee and desserts! A perfect spot to chill with friends.",
+      date: "2024-08-22"
+    },
+    {
+      id: 5,
+      reviewerName: "Rohit Singh",
+      reviewerImage: "http://localhost:3000/assets/reviewverimg/rohit.png",
+      rating: 4,
+      comment: "Authentic Indian flavors with a modern twist. Highly recommend the butter chicken!",
+      date: "2024-08-20"
+    }
+  ];
+  
+  
+
+export default function reviewcard(props) {
+
+    const review = restaurantReviews.slice(0, props.length)
+
+  return (
+    <>
+    {
+        review.map((rev, i) => {
+            return (
+                <div key={i} className='review-card'>
+                    <div className='review-img'>
+                        <img src={rev.reviewerImage} alt={rev.reviewerName} />
+                    </div>
+                    <h3 className='review-title'>{rev.reviewerName}</h3>
+                    <div className='review-star'>
+                      <RatingStar rating={rev.rating}/>
+                    </div>
+                    <p className='card-p'>
+                        {rev.comment}
+                    </p>
+                </div>
+            )
+        })
+    }
+    </>
+  )
+}
