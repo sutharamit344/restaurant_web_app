@@ -2,7 +2,7 @@
     grid-column: 1/ span 12;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 150px 150px;
+    grid-template-rows: 200px 200px;
     gap: 20px;
 }
 .event-cards{
@@ -16,7 +16,7 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border-radius: 8px;
-    border-bottom: 4px solid #263b7a;
+    border-bottom: 4px solid #ffc61b;
     color: white;
 }
 .event-header{

@@ -4,6 +4,7 @@ import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import Card from "../food_card/card"
 import ReviewCard from '../reviewcard/reviewcard';
 import EventCards from '../eventcard/eventcard';
+import Footer from "../footer/footer"
 const domain = window.location;
 
 export const fastFoodItems = [
@@ -129,6 +130,7 @@ useEffect(() => {
       <EventCards length="4"/>
       </div>
       </section>
+      <Footer/>
     </>
   )
 }
