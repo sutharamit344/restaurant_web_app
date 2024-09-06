@@ -2,14 +2,6 @@ nav a{
     text-decoration: none;
     color: black;
 }
-
-#navbar{
-    z-index: 9999;
-    background-color: white;
-    position: sticky;
-    top: 0px;
-    padding: 1rem 15%;
-}
 .logo{
     display: flex;
     justify-content: start;

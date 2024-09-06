@@ -75,7 +75,7 @@ const prevDishHandler = () => {
 }
 
 useEffect(() => {
-  console.log(nextDish)
+  console.log(window.innerWidth)
 })
 
 
@@ -88,8 +88,10 @@ useEffect(() => {
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
             <p className='p'>Experience the taste of luxury with our exquisite dishes made from the freshest ingredients.</p>
                 <h1>Order Over ₹299/- Get 50% Off</h1>
-                <button className='btn-yellow' style={{marginRight:"1rem"}}>Order Foods</button>
-            <button className='btn-yellow'>Reserve aTable</button>
+                  <div className='ca-btn-g'>
+                    <button className='btn-yellow' style={{marginRight:"1rem"}}>Order Foods</button>
+                    <button className='btn-yellow'>Reserve aTable</button>
+                </div>
             </div>
         <div id='instant-food'>
             <div id='scroll-food' style={{backgroundImage: `url("${domain}assets/img/logo.png")`}}>
@@ -113,19 +115,25 @@ useEffect(() => {
         </div>
     </section>
     <section id='week-special' className='grid'>
-      <h1 className='h2'>This week's special</h1>
+      <h1 className='h2'>
+      <div className='sh1'></div>
+       This week's special</h1>
       <div className='cards'>
       <Card length="4"/>
       </div>
     </section>
     <section id='review-section' className='grid'>
-      <h1 className='h2'>Customer Review</h1>
+      <h1 className='h2'>
+      <div className='sh2'></div>
+       Customer Review</h1>
       <div className='cards'>
       <ReviewCard length="4"/>
       </div>
       </section>
     <section id='event-section' className='grid'>
-      <h1 className='h2'>Events</h1>
+      <h1 className='h2'>
+      <div className='sh1'></div>
+        Events</h1>
       <div className='event-cards'>
       <EventCards length="4"/>
       </div>

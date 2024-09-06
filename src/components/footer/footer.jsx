@@ -23,10 +23,10 @@ const Footer = () => {
             <li><h4>Quick Links</h4></li>
             <li><a href="#events">Home</a></li>
             <li><a href="#events">Cart</a></li>
+            <li><a href="#contact">Bookings</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="#reservations">Food order</a></li>
             <li><a href="#reservations">Reservations</a></li>
-            <li><a href="#contact">Contact Us</a></li>
           </ul>
         </div>
 

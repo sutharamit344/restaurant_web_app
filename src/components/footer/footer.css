@@ -1,12 +1,8 @@
-.footer-container {
-    background-color: #0b0a31;
-    padding: 2rem 15%;
-    color: lightgray;
-  }
+
   
   .footer-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: .8fr repeat(2, 1fr);
     gap: 4rem;
     text-align: left;
   }
@@ -51,4 +47,7 @@
   }
   h4{
     color: white;
+  }
+  .footer-logo{
+    margin-bottom: 1rem;
   }
