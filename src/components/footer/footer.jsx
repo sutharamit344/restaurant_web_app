@@ -3,7 +3,7 @@ import './footer.css';  // External CSS file for styling
 import { AiFillFacebook } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-const url = window.location+"assets/img/logo.png";
+const domain = window.location.origin+"/";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
         
         <div className="footer-column">
             <div className='footer-logo'>
-        <img src={url} alt='logo'/>
+        <img src={domain+"assets/img/logo.png"} alt='logo'/>
         <h2>Restaurant</h2>
             </div>
           <p>Welcome to Restaurant! We specialize in authentic cuisine, served with love. Join us for delicious meals and special event celebrations.</p>

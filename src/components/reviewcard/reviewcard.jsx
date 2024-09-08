@@ -1,7 +1,7 @@
 import React from 'react'
 import "./reviewcard.css"
 import { FaStar } from "react-icons/fa6";
-const domain = window.location;
+const domain = window.location.origin+"/";
 
 export const RatingStar = ({rating}) => {
   const stars = [];

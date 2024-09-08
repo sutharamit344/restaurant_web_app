@@ -1,5 +1,6 @@
 import React from 'react'
 import "./eventcard.css"
+const domain = window.location.origin+"/";
 
 const indianFestivalEvents = [
     {
@@ -32,7 +33,6 @@ const indianFestivalEvents = [
     }
   ];
   
-const domain = window.location;
 
 export default function EventCards(props) {
 

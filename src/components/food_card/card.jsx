@@ -1,5 +1,6 @@
 import React from 'react'
 import "./card.css"
+const domain = window.location.origin+"/";
 
 const vegIndianDishes = [
   {
@@ -78,8 +79,6 @@ const vegIndianDishes = [
 export default function Card(props) {
 
   const vegLength = vegIndianDishes.slice(0, props.length)
-
-  const domain = window.location;
 
   return (
     <>

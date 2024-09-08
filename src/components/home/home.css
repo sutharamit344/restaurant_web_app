@@ -35,21 +35,20 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-radius: 50%;
 }
 .arrw-btn {
-    background-color: white;
+    background-color: lightgray;
     color: black;
     font-size: 2rem;
     border-radius: 8px;
 }
 .arrw-btn:hover{
-    background-color: lightgray;
+    background-color: white;
     box-shadow: 1px 1px 4px white;
 }
 .scroller .card{
     text-align: center;
-    transition: .5s;
+    transition: transform 0.5s ease-in-out;
     padding: 12%;
 }
 .dish-img{
@@ -62,7 +61,7 @@
     padding: 15px;
     margin-bottom: 2rem;
     margin-top: 4rem;
-    transition:0.5s;
+    transition: transform 0.5s ease-in-out;
 }
 .dish-img img{
     border-radius: 50%;
@@ -88,3 +87,4 @@
         top: -30%;
     }
 }
+

@@ -100,6 +100,40 @@
   color: lightgray;
 }
 
+input{
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 18px;
+  margin: 4px 0;
+  outline: none;
+}
+.input-group input{
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  outline: none;
+}
+.input-group{
+  padding: 8px;
+  display: flex;
+  align-items: center;  
+  background-color: white;
+  border-radius: 8px;
+}
+.input-group span{
+  display: flex;
+}
+.input-group-icon{
+  color: black;
+  font-size: 18px;
+}
+
+.form-control > input:focus,
+.input-group:focus-within {
+  outline: 2px solid #ffc61b;
+  border-radius: 5px;
+}
 @media screen and (max-width: 1250px) {
   .footer-container,
     .grid{

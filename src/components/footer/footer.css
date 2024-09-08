@@ -28,7 +28,7 @@
     flex-direction: column;
     gap: .5rem;
   }
-  li a{
+  footer li a{
     color: lightgray;
     text-decoration: none;
   }

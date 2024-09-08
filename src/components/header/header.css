@@ -24,13 +24,17 @@ nav a{
 .nav-item{
     display: flex;
     align-items: center;
+}
+.nav-link{
     padding: 0 2rem;
     font-weight: bold;
     color: #696969;
 }
-.nav-item:hover{
-    font-weight: bold;
+.nav-item:hover .nav-link{
     color: black;
+    font-weight: bold;
+}
+.nav-item:hover{
     border-bottom: 2px solid #263b7a;
 }
 .active{
