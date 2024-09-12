@@ -1,0 +1,9 @@
+
+.side-foodcart{
+    position: fixed;
+    top: 0px;
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    display: none;
+  }

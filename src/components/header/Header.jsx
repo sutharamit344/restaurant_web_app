@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "./header.css";
+import FoodCart from '../foodcart/foodcart';
 
 const domain = window.location.origin + "/";
 
@@ -18,19 +19,21 @@ export default function Header() {
         <li className={activePath === "/" ? "nav-item active" : "nav-item"}>
           <Link to="/" className='nav-link'>Home</Link>
         </li>
-        <li className={activePath === "/about" ? "nav-item active" : "nav-item"}>
-          <Link to="/about" className='nav-link'>About</Link>
+        <li className={activePath === "/tableBooking" ? "nav-item active" : "nav-item"}>
+          <Link to="/booking" className='nav-link'>Booking</Link>
         </li>
-        <li className={activePath === "/table" ? "nav-item active" : "nav-item"}>
-          <Link to="/table" className='nav-link'>Table</Link>
-        </li>
-        <li className={activePath === "/food" ? "nav-item active" : "nav-item"}>
-          <Link to="/food" className='nav-link'>Food</Link>
+        <li className={activePath === "/food-order" ? "nav-item active" : "nav-item"}>
+          <Link to="/food-order" className='nav-link'>Food</Link>
         </li>
         <li className="nav-item">
           <Link to={activePath === "/login" ? "/signup" : "/login"} className='nav-link'>
             {activePath === "/login" ? "SignUp" : "Login"}
           </Link>
+        </li>
+        <li className={activePath === "/food-cart" ? "nav-item active" : "nav-item"}>
+          <Link to="/food-order" className='nav-link'>
+          <img src="http://localhost:3000/assets/img/food-cart.svg" alt="food cart" className='nav-icon'/>Cart</Link>
+          <FoodCart/>
         </li>
       </ul>
     </nav>

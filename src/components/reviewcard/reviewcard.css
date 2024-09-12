@@ -6,6 +6,7 @@
 .review-card{
     text-align: center;
     padding: 1.5rem;
+    padding-bottom: 0.7rem;
     display: grid;
     row-gap: .5rem;
     border-radius: 1rem;
@@ -13,10 +14,12 @@
     color: black;
     border-bottom: 4px solid #ffc61b;
     box-shadow: 1px 1px 5px black;
-    transition: .5s;
+    transition: .1s;
+    flex: 1 1;
 }
 .review-card:hover{
     padding: 1.2rem;
+    padding-bottom: 0.4rem;
     margin: 0.3rem;
 }
 .review-img{
@@ -33,4 +36,7 @@
 }
 .review-img img{
     width: 100%;
+}
+.card-date{
+    text-align: right;
 }

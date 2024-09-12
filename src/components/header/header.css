@@ -23,12 +23,16 @@ nav a{
 }
 .nav-item{
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    justify-content: stretch;
 }
 .nav-link{
     padding: 0 2rem;
     font-weight: bold;
     color: #696969;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .nav-item:hover .nav-link{
     color: black;
@@ -41,4 +45,8 @@ nav a{
     font-weight: bold;
     color: black;
     border-bottom: 2px solid #263b7a;
+}
+.nav-icon{
+    height: 24px;
+    margin: 0 4px 4px 0;
 }

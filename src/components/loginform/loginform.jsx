@@ -3,7 +3,7 @@ import "./loginform.css";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import { Link, useLocation } from "react-router-dom";
 
-const domain = window.location.origin + "/";
+const domain = window.location.origin;
 
 export default function Loginform() {
   const location = useLocation();
@@ -22,14 +22,14 @@ export default function Loginform() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
   };
 
   return (
     <section id='login-section' className='grid'>
       <div id='form-body'>
         <div className={`form-box login ${activePath === "/login" ? "" : "hidden"}`}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='form-col-1'>
             <h2 className='h2'>LogIn</h2>
             <div className='form-control'>
               <label htmlFor="login-email">Email</label>
@@ -44,7 +44,7 @@ export default function Loginform() {
                   name='userPassword' 
                   id='login-password'
                 />
-                <span className='input-group-icon' onClick={handleLoginPassToggle}>
+                <span className='input-icon' onClick={handleLoginPassToggle}>
                   {loginPassVisibility ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </div>
@@ -59,10 +59,10 @@ export default function Loginform() {
           </form>
         </div>
         
-      <div className='image' style={{backgroundImage: `url("${domain}assets/img/rimg1.png")`}}></div>
+      <div className='image' style={{backgroundImage: `url("${domain}/assets/img/rimg1.png")`}}></div>
 
         <div className={`form-box signup ${activePath === "/signup" ? "" : "hidden"}`}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='form-col-1'>
             <h2 className='h2'>SignUp</h2>
             <div className='form-control'>
               <label htmlFor="signup-email">Email</label>
@@ -77,7 +77,7 @@ export default function Loginform() {
                   name='userPassword' 
                   id='signup-password'
                 />
-                <span className='input-group-icon' onClick={handleSignupPassToggle}>
+                <span className='input-icon' onClick={handleSignupPassToggle}>
                   {signupPassVisibility ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </div>
@@ -91,7 +91,7 @@ export default function Loginform() {
                   name='userPassword' 
                   id='signup-c-password'
                 />
-                <span className='input-group-icon' onClick={handleSignupPassToggle}>
+                <span className='input-icon' onClick={handleSignupPassToggle}>
                   {signupPassVisibility ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </div>

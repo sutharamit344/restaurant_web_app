@@ -1,24 +1,31 @@
 .cards .card{
-    width: 100%;
     border-bottom: 4px solid #ffc61b;
     border-radius: 1rem;
     overflow: hidden;
     position:relative;
-    padding-bottom: 1rem;
-    transform: 0.5s;
+    padding-bottom: 2rem;
+    transition: 0.1s;
+    flex: 0 0 24%;
+}
+.cards .card:hover{
+    outline: 1px solid #f7d981;
+    cursor: pointer;
+    transform: scale(0.95);
 }
 .card-img{
+    height: 160px;
     border-radius: 1rem;
     overflow: hidden;
     position: relative;
+    background-color: lightgray;
 }
 .img-shade{
-    background:linear-gradient(to top, black 50%, transparent);
+    background:linear-gradient(to top, black 10%, transparent);
     width: 100%;
     height: 30%;
     position: absolute;
     bottom: 0px;
-    padding: 1rem;
+    padding: 0.8rem;
     color: white;
 }
 .card-img img{
@@ -29,31 +36,61 @@
 .cards .card:hover img{
     transform: scale(104%);
 }
-.cards .card:hover{
-    box-shadow: 1px 1px 5px rgb(70, 70, 70);
-}
 .card-detail{
-    padding: 1rem;
+    padding: .8rem;
 }
 .card-title{
     display: flex;
     justify-content: space-between;
     font-size: 1rem;
 }
+.item-name{
+    width: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
 .card-p{
     font-size: .8rem;
+    text-align: justify;
     line-height: 1.2rem;
+    padding: 0.5rem 0 0 0;
+}
+.card-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    right: 0.8rem;
+    left: 0.8rem;
+    bottom: 0.8rem;
+}
+.card-bottom button{
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
 }
 .card-price{
     color: brown;
 }
-.card p{
-    padding: .5rem 0;
+.card-bottom .add-btn{
+    background-color: #fcca35;
 }
-.card-btn{
-    position:absolute;
-    bottom: 1rem;
+.card-bottom .remove-btn{
+    background-color: #fa3a3a;
+    color: white;
 }
-.card-date{
-    text-align: right;
+.card-bottom .add-btn:hover{
+    background-color: #ffc61b;
+}
+.card-bottom .remove-btn:hover{
+    background-color: #ff1b1b;
+    color: white;
+}
+.card-bottom .add-btn:active{
+    outline: 1px solid #ffc61b;
+}
+.card-bottom .remove-btn:active{
+    outline: 1px solid #ff1b1b;
+    color: white;
 }

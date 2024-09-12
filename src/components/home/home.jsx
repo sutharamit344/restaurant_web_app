@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
-import Card from "../food_card/card"
 import ReviewCard from '../reviewcard/reviewcard';
 import EventCards from '../eventcard/eventcard';
-const domain = window.location.origin;
+import { FoodContext } from '../foodprovider/foodprovider';
+import Card from '../food_card/card';
+const origin = window.location.origin;
 
 export const fastFoodItems = [
   {
@@ -62,6 +63,7 @@ export const fastFoodItems = [
 
 export default function Home() {
 const [nextDish, setNextDish] = useState(0)
+const {trending} = useContext(FoodContext)
 
 const nextDishHandler = () => {
   nextDish < fastFoodItems.length-1 &&
@@ -72,10 +74,6 @@ const prevDishHandler = () => {
   nextDish > 0 &&
   setNextDish(nextDish-1)
 }
-
-useEffect(() => {
-  console.log(window.innerWidth)
-})
 
 
   return (
@@ -92,7 +90,7 @@ useEffect(() => {
                 </div>
             </div>
         <div id='instant-food'>
-            <div id='scroll-food' style={{backgroundImage: `url("${domain}/assets/img/logo.png")`}}>
+            <div id='scroll-food' style={{backgroundImage: `url("${origin}/assets/img/logo.png")`}}>
             <IoIosArrowBack className='arrw-btn' onClick={prevDishHandler} aria-label='previous dish'/>
           <div className='scroller'>
             {
@@ -100,7 +98,7 @@ useEffect(() => {
                 return (
                   <div key={i} className='card' style={{transform:`translateX(-${nextDish*100}%)`}}>
                   <div className='dish-img' style={{transform:`rotateZ(-${nextDish*360}deg)`}}>
-                  <img src={domain+dish.imageUrl} alt="fast food"/>
+                  <img src={origin+dish.imageUrl} alt="fast food"/>
                   </div>
                   <h2>{dish.name}</h2>
                   </div>
@@ -115,9 +113,9 @@ useEffect(() => {
     <section id='week-special' className='grid'>
       <h1 className='h2'>
       <div className='sh1'></div>
-       This week's special</h1>
+       Most Served</h1>
       <div className='cards'>
-      <Card length="4"/>
+        <Card itemList={trending}/>
       </div>
     </section>
     <section id='review-section' className='grid'>
