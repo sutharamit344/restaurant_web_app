@@ -7,6 +7,7 @@ import Header from "./components/header/Header"
 import Table from "./components/tablebooking/table";
 import Foods from "./components/foodorder/foods";
 import { FoodProvider } from "./components/foodprovider/foodprovider";
+import FoodCart from './components/foodcart/foodcart';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/food-order" element={<Foods/>} />
     </Routes>
     <Footer/>
+    <FoodCart/>
     </BrowserRouter>
     </FoodProvider>
     </>

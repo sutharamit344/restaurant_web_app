@@ -30,11 +30,10 @@
 }
 .card-img img{
     width: 100%;
-    transform: scale(120%);
-    transition: 0.5s;
+    transition: 0.1s;
 }
 .cards .card:hover img{
-    transform: scale(104%);
+    transform: scale(106%);
 }
 .card-detail{
     padding: .8rem;
