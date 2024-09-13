@@ -50,9 +50,7 @@ export default function Loginform() {
               </div>
               <a href="/">?Forgot password</a>
             </div>
-            <div className='form-control'>
-              <input type="submit" value="Login" className='btn-yellow'/>
-            </div>
+            <input type="submit" value="LogIn" className="btn-yellow form-btn"/>
             <div className='form-control'>
               <Link to="/signup">SignUp</Link>
             </div>
@@ -96,9 +94,7 @@ export default function Loginform() {
                 </span>
               </div>
             </div>
-            <div className='form-control'>
-              <input type="submit" value="Signup" className='btn-yellow'/>
-            </div>
+            <input type="submit" value="SignUp" className="btn-yellow form-btn"/>
             <div className='form-control'>
               <Link to="/login">LogIn</Link>
             </div>

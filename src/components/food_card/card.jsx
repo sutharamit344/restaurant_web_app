@@ -3,10 +3,10 @@ import "./card.css"
 import { BsCartDashFill, BsCartPlusFill } from 'react-icons/bs'
 
 
-
 export default function Card({itemList}) {
-  
 
+  const origin = window.location.origin
+  
   return (
     <>
     {
@@ -14,7 +14,7 @@ export default function Card({itemList}) {
         return (
     <div key={i} className='card'>
     <div className='card-img'>
-      <img src={`http://localhost:3000/assets/foods/${item.image}`} alt={item.image} />
+      <img src={`${origin}/assets/foods/${item.image}`} alt={item.image} />
       <div className='img-shade'>
         <h3>Get 25% Off</h3>
       </div>

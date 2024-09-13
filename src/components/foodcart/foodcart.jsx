@@ -1,12 +1,18 @@
 import React, { useState } from "react"
 import "./foodcart.css"
 import CartItem from "./cartitem"
+import { useNavigate } from "react-router-dom"
 
 export default function FoodCart() {
     const [toggleCart, setToggleCart] = useState(false)
+    const navigate = useNavigate()
 
     const handleToggleCart = () => {
         setToggleCart(!toggleCart)
+    }
+
+    const checkout = () => {
+        navigate("/checkout")
     }
 
     return (
@@ -28,7 +34,7 @@ export default function FoodCart() {
                         <b>3848</b>
                     </div>
             </div>
-            <button className="btn-yellow">Checkout</button>
+            <button className="btn-yellow" onClick={checkout}>Checkout</button>
         </section>
         </>
     )

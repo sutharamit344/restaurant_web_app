@@ -3,11 +3,13 @@ import './footer.css';  // External CSS file for styling
 import { AiFillFacebook } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import FoodCart from '../foodcart/foodcart';
 const domain = window.location.origin+"/";
 
 const Footer = () => {
-  return (
-    <footer className="footer-container">
+  return (<>
+  
+  <footer className="footer-container">
       <div className="footer-grid">
         
         <div className="footer-column">
@@ -52,6 +54,8 @@ const Footer = () => {
         <p>&copy; 2024 Restaurant All rights reserved. | <a href="/terms">Terms & Conditions</a> | <a href="/privacy">Privacy Policy</a></p>
       </div>
     </footer>
+    <FoodCart/>
+    </>
   );
 }
 

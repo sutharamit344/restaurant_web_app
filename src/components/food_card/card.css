@@ -6,11 +6,12 @@
     padding-bottom: 2rem;
     transition: 0.1s;
     flex: 0 0 24%;
+    background-color: white;
 }
 .cards .card:hover{
     outline: 1px solid #f7d981;
     cursor: pointer;
-    transform: scale(0.95);
+    transform: scale(0.96);
 }
 .card-img{
     height: 160px;
@@ -18,6 +19,7 @@
     overflow: hidden;
     position: relative;
     background-color: lightgray;
+    margin: 4px;
 }
 .img-shade{
     background:linear-gradient(to top, black 10%, transparent);

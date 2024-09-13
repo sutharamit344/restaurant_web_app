@@ -24,7 +24,7 @@ function Failed() {
       </div>
       <h2>Verification code</h2>
       <h2>Incorrect!</h2>
-      <div className='input-group'>
+      <div>
       <input type="button" value="Retry" className='btn-yellow' onClick={() => window.location.reload()}/>
       <input type="button" value="Cencel" className='btn-red' onClick={() => navigate(-1)}/>
       </div>
@@ -39,7 +39,6 @@ export default function ConfPayment(props) {
   const userINput = parseInt(prompt("Varification COde, Your dummy code: "+randomOtp))
 
   useEffect(() => {
-    console.log(userINput === randomOtp)
     userINput === randomOtp &&
     setTimeout(() => {
       navigate(props.redirect)

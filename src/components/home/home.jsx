@@ -5,6 +5,8 @@ import ReviewCard from '../reviewcard/reviewcard';
 import EventCards from '../eventcard/eventcard';
 import { FoodContext } from '../foodprovider/foodprovider';
 import Card from '../food_card/card';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../footer/footer';
 const origin = window.location.origin;
 
 export const fastFoodItems = [
@@ -64,6 +66,7 @@ export const fastFoodItems = [
 export default function Home() {
 const [nextDish, setNextDish] = useState(0)
 const {trending} = useContext(FoodContext)
+const navigate = useNavigate()
 
 const nextDishHandler = () => {
   nextDish < fastFoodItems.length-1 &&
@@ -78,19 +81,19 @@ const prevDishHandler = () => {
 
   return (
     <>
-    <section id='hero-section' className='grid'>
+    <section id='hero-section' className='grid' >
         <div id='promo'>
             <h2>Welcome to</h2>
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
             <p className='p'>Experience the taste of luxury with our exquisite dishes made from the freshest ingredients.</p>
                 <h1>Order Over ₹299/- Get 50% Off</h1>
                   <div className='ca-btn-g'>
-                    <button className='btn-yellow' style={{marginRight:"1rem"}}>Order Foods</button>
-                    <button className='btn-yellow'>Reserve aTable</button>
+                    <button className='btn-yellow' onClick={() => navigate("/food-order")} style={{marginRight:"1rem"}}>Order Foods</button>
+                    <button className='btn-yellow' onClick={() => navigate("/booking")}>Reserve aTable</button>
                 </div>
             </div>
         <div id='instant-food'>
-            <div id='scroll-food' style={{backgroundImage: `url("${origin}/assets/img/logo.png")`}}>
+            <div id='scroll-food'>
             <IoIosArrowBack className='arrw-btn' onClick={prevDishHandler} aria-label='previous dish'/>
           <div className='scroller'>
             {
@@ -134,6 +137,7 @@ const prevDishHandler = () => {
       <EventCards length="4"/>
       </div>
       </section>
+      <Footer/>
     </>
   )
 }

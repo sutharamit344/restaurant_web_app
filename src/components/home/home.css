@@ -1,40 +1,34 @@
 #hero-section{
-    min-height: 50vh;
-    background-color: #263b7a;
-    color: white;
+    min-height: 40vh;
+    background-size: cover;
+    background-blend-mode:multiply;
 }
 
 #promo{
     grid-column: 1/6;
     display: flex;
     flex-wrap: wrap;
-    align-content: space-around;
+    align-content: space-between;
+    padding: 2rem 0;
 }
 #instant-food{
     grid-column: 6/ span 12;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     position: relative;
 }
 #scroll-food{
     width: 500px;
-    height: 500px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    position: absolute;
-    top: -50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
 }
 .scroller{
     width: 59%;
-    height: 100%;
     display: flex;
     align-items: center;
     overflow: hidden;
+    filter: drop-shadow(10px 10px 15px #00000080);
 }
 .arrw-btn {
     background-color: lightgray;

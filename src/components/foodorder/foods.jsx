@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Card from '../food_card/card'
 import { FoodContext } from '../foodprovider/foodprovider'
+import Footer from '../footer/footer'
 
 export default function Foods() {
 
-  const {menu, trending} = useContext(FoodContext)
+  const {menu} = useContext(FoodContext)
 
   return (
+    <>
     <section id='menu' className='grid'>
       {
         menu.map(categories => {
@@ -21,5 +23,7 @@ export default function Foods() {
         })
       }
     </section>
+    <Footer/>
+    </>
   )
 }

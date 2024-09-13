@@ -2,14 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/home/home";
 import React from "react";
 import Loginform from "./components/loginform/loginform";
-import Footer from "./components/footer/footer";
 import Header from "./components/header/Header"
 import Table from "./components/tablebooking/table";
 import Foods from "./components/foodorder/foods";
 import { FoodProvider } from "./components/foodprovider/foodprovider";
-import FoodCart from './components/foodcart/foodcart';
+import Checkout from "./components/checkout/checkout";
 
 function App() {
+
   return (
     <>
     <FoodProvider>
@@ -25,9 +25,10 @@ function App() {
       <Route path="/signup" element={<Loginform activeForm={false}/>} ></Route>
       <Route path="/conf-payment" element={<Table/>}></Route>
       <Route path="/food-order" element={<Foods/>} />
+      <Route path="/checkout" element={<Checkout/>} />
+      <Route path="/delivery-address" element={<Checkout/>} />
+      <Route path="/delivery-payment" element={<Checkout/>} />
     </Routes>
-    <Footer/>
-    <FoodCart/>
     </BrowserRouter>
     </FoodProvider>
     </>

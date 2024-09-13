@@ -18,7 +18,7 @@ export default function Header() {
         <li className={activePath === "/" ? "nav-item active" : "nav-item"}>
           <Link to="/" className='nav-link'>Home</Link>
         </li>
-        <li className={activePath === "/tableBooking" ? "nav-item active" : "nav-item"}>
+        <li className={activePath === "/booking" ? "nav-item active" : "nav-item"}>
           <Link to="/booking" className='nav-link'>Booking</Link>
         </li>
         <li className={activePath === "/food-order" ? "nav-item active" : "nav-item"}>
