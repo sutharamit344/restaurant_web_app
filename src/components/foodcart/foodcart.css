@@ -16,18 +16,16 @@
   left: 100%;
 }
 .cart-knob{
-  position: absolute;
+  position: fixed;
   top: 0px;
-  right: 100%;
+  right: 1px;
   padding: 1rem;
-  border-radius: 50% 0 0 50%;
-  background-color: #f0f0f0;
 }
 .knob-btn{
   border-radius: 50%;
   padding: 0.5rem;
-  box-shadow: 2px 2px 4px black;
 }
+
 .icon-flip{
   transform: scaleX(-1);
 }
@@ -39,7 +37,6 @@
   height: 100%;
   margin-left: auto;
   position: fixed;
-  background-color: #f0f0f0;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -76,7 +73,6 @@
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: white;
   border-radius: 8px;
   padding: 8px;
 }
@@ -114,7 +110,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
 }
 .cart-item-price{
   display: flex;
@@ -130,7 +125,6 @@
 .cart-subtotal{
   width: 100%;
   padding: 8px;
-  background-color: white;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;

@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
+import { UseDarkMode } from "../darkmode/darkmode"
 
 export default function CartOtem() {
+    const {darkMode} = useContext(UseDarkMode)
     return (
         <>
-        <div className="cart-items">
+        <div className={`cart-items bg-item`}>
                     <div className="cart-item">
                         <div className="cart-item-img">
                             <img src="http://localhost:3000/assets/foods/veggie-burger.png" alt="" />
@@ -18,7 +20,7 @@ export default function CartOtem() {
                         </div>
                         <div className="cart-item-qty-btn">
                             <button className="cart-item-dec">-</button>
-                            <div className="cart-item-qty">0</div>
+                            <div className="output">0</div>
                             <button className="cart-item-inc">+</button>
                         </div>
                         <div className="cart-item-price">

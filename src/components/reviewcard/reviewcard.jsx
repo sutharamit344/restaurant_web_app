@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./reviewcard.css"
 import { FaStar } from "react-icons/fa6";
+import { UseDarkMode } from '../darkmode/darkmode';
 const domain = window.location.origin+"/";
 
 export const RatingStar = ({rating}) => {
@@ -62,7 +63,9 @@ const restaurantReviews = [
   
   
 
-export default function reviewcard(props) {
+export default function Reviewcard(props) {
+
+  const {darkMode} = useContext(UseDarkMode)
 
     const review = restaurantReviews.slice(0, props.length)
 
@@ -71,7 +74,7 @@ export default function reviewcard(props) {
     {
         review.map((rev, i) => {
             return (
-                <div key={i} className='review-card'>
+                <div key={i} className={`review-card  ${darkMode ? "bg-item" : "bg-light"}`}>
                     <div className='review-img'>
                         <img src={domain+rev.reviewerImage} alt={rev.reviewerName} />
                     </div>

@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./card.css"
 import { BsCartDashFill, BsCartPlusFill } from 'react-icons/bs'
+import { UseDarkMode } from '../darkmode/darkmode'
 
 
 export default function Card({itemList}) {
 
   const origin = window.location.origin
-  
+  const {darkMode} = useContext(UseDarkMode)
+
   return (
     <>
     {
       itemList.map((item, i) => {
         return (
-    <div key={i} className='card'>
+    <div key={i} className={`card  bg-item`}>
     <div className='card-img'>
       <img src={`${origin}/assets/foods/${item.image}`} alt={item.image} />
       <div className='img-shade'>

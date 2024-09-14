@@ -27,7 +27,7 @@ export default function Loginform() {
 
   return (
     <section id='login-section' className='grid'>
-      <div id='form-body'>
+      <div id='form-body' className={`bg-item`}>
         <div className={`form-box login ${activePath === "/login" ? "" : "hidden"}`}>
           <form onSubmit={handleSubmit} className='form-col-1'>
             <h2 className='h2'>LogIn</h2>

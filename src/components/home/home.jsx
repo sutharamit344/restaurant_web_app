@@ -7,18 +7,19 @@ import { FoodContext } from '../foodprovider/foodprovider';
 import Card from '../food_card/card';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
+import { UseDarkMode } from '../darkmode/darkmode';
 const origin = window.location.origin;
 
 export const fastFoodItems = [
   {
-    id: 1,
-    name: "Cheeseburger",
-    imageUrl: "/assets/fastfood/cheeseburger.png"
-  },
-  {
     id: 2,
     name: "Pepperoni Pizza",
     imageUrl: "/assets/fastfood/pepperoni_pizza.png"
+  },
+  {
+    id: 1,
+    name: "Cheeseburger",
+    imageUrl: "/assets/fastfood/cheeseburger.png"
   },
   {
     id: 3,
@@ -67,6 +68,7 @@ export default function Home() {
 const [nextDish, setNextDish] = useState(0)
 const {trending} = useContext(FoodContext)
 const navigate = useNavigate()
+const {darkMode, toggleDarkMode} = useContext(UseDarkMode)
 
 const nextDishHandler = () => {
   nextDish < fastFoodItems.length-1 &&
@@ -81,7 +83,7 @@ const prevDishHandler = () => {
 
   return (
     <>
-    <section id='hero-section' className='grid' >
+    <section id='hero-section' className={`grid `} >
         <div id='promo'>
             <h2>Welcome to</h2>
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
@@ -113,28 +115,28 @@ const prevDishHandler = () => {
             </div>
         </div>
     </section>
-    <section id='week-special' className='grid'>
+    <section id='most-item' className={`grid bg-yellow`} >
       <h1 className='h2'>
-      <div className='sh1'></div>
+      <div className='sh'></div>
        Most Served</h1>
       <div className='cards'>
         <Card itemList={trending}/>
       </div>
     </section>
-    <section id='review-section' className='grid'>
+    <section id='review-section' className={`grid bg-dark`}>
       <h1 className='h2'>
-      <div className='sh2'></div>
+      <div className='sh'></div>
        Customer Review</h1>
       <div className='cards'>
       <ReviewCard length="4"/>
       </div>
       </section>
-    <section id='event-section' className='grid'>
+    <section id='event-section' className={`grid bg-yellow`}>
       <h1 className='h2'>
-      <div className='sh1'></div>
+      <div className='sh'></div>
         Events</h1>
       <div className='event-cards'>
-      <EventCards length="4"/>
+      <EventCards length="4" />
       </div>
       </section>
       <Footer/>

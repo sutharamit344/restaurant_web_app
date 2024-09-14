@@ -60,7 +60,7 @@ export default function Table() {
     return (
         <>
         <section id="table-section" className="grid">
-            <div id="form-body" >
+            <div id="form-body" className="bg-item">
                 <div className={`form-box ${step === "/booking" ? "" : "hidden"}`}>
                 <form className="form-col-2">
                     <h2 className="h2 col-2">Booking</h2>

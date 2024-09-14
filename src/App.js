@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/home/home";
-import React from "react";
+import React, { useContext } from "react";
 import Loginform from "./components/loginform/loginform";
 import Header from "./components/header/Header"
 import Table from "./components/tablebooking/table";
 import Foods from "./components/foodorder/foods";
-import { FoodProvider } from "./components/foodprovider/foodprovider";
 import Checkout from "./components/checkout/checkout";
+import { UseDarkMode } from "./components/darkmode/darkmode";
 
 function App() {
 
+  const {darkMode} = useContext(UseDarkMode)
+
   return (
-    <>
-    <FoodProvider>
+    <div id="darkMode" className={`${darkMode ? "bg-dark" : "bg-light"}`}>
     <BrowserRouter>
     <Header/>
     <Routes>
@@ -30,8 +31,7 @@ function App() {
       <Route path="/delivery-payment" element={<Checkout/>} />
     </Routes>
     </BrowserRouter>
-    </FoodProvider>
-    </>
+    </div>
   );
 }
 

@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './footer.css';  // External CSS file for styling
 import { AiFillFacebook } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import FoodCart from '../foodcart/foodcart';
-const domain = window.location.origin+"/";
+import { IoIosRestaurant } from 'react-icons/io';
+import { UseDarkMode } from '../darkmode/darkmode';
 
 const Footer = () => {
+
+  const {darkMode} = useContext(UseDarkMode)
+
   return (<>
   
-  <footer className="footer-container">
+  <footer className={`footer-container bg-footer`}>
       <div className="footer-grid">
         
         <div className="footer-column">
-            <div className='footer-logo'>
-        <img src={domain+"assets/img/logo.png"} alt='logo'/>
-        <h2>Restaurant</h2>
+            <div id='footer-logo'>
+    <a href="/" className='logo'>
+    <IoIosRestaurant className='logo-img'/>
+      <h2 className='h3'>Restaurant</h2>
+    </a>
             </div>
           <p>Welcome to Restaurant! We specialize in authentic cuisine, served with love. Join us for delicious meals and special event celebrations.</p>
        </div>
@@ -41,9 +47,9 @@ const Footer = () => {
           
           <h4>Follow Us</h4>
           <div className="social-icons">
-            <a href="https://facebook.com"><AiFillFacebook size="32px" color="lightgray"/></a>
-            <a href="https://twitter.com"><FaInstagram size="32px" color="lightgray"/></a>
-            <a href="https://instagram.com"><FaXTwitter size="32px" color="lightgray"/></a>
+            <a href="https://facebook.com"><AiFillFacebook size="32px"/></a>
+            <a href="https://twitter.com"><FaInstagram size="32px"/></a>
+            <a href="https://instagram.com"><FaXTwitter size="32px"/></a>
           </div>
         </div>
         

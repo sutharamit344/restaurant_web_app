@@ -1,21 +1,18 @@
 #hero-section{
-    min-height: 40vh;
     background-size: cover;
     background-blend-mode:multiply;
 }
 
 #promo{
-    grid-column: 1/6;
+    grid-column: 1/7;
     display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
-    padding: 2rem 0;
+    flex-direction: column;
+    justify-content: space-between;
 }
 #instant-food{
-    grid-column: 6/ span 12;
+    grid-column: 7/ span 12;
     display: flex;
     justify-content: flex-end;
-    position: relative;
 }
 #scroll-food{
     width: 500px;
@@ -28,41 +25,34 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    filter: drop-shadow(10px 10px 15px #00000080);
+    filter: drop-shadow(6px 5px 15px black);
 }
 .arrw-btn {
-    background-color: lightgray;
-    color: black;
     font-size: 2rem;
     border-radius: 8px;
-}
-.arrw-btn:hover{
-    background-color: white;
-    box-shadow: 1px 1px 4px white;
 }
 .scroller .card{
     text-align: center;
     transition: transform 0.5s ease-in-out;
-    padding: 12%;
+    padding: 0 12%;
 }
 .dish-img{
-    background-color: white;
     width: 230px;
     height: 230px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
-    padding: 15px;
-    margin-bottom: 2rem;
-    margin-top: 4rem;
+    padding: 10px;
+    margin: 2rem 0;
     transition: transform 0.5s ease-in-out;
 }
 .dish-img img{
     border-radius: 50%;
 }
 .dish-img:hover{
-    padding: 20px;
+    padding: 15px;
 }
+
 
 
 @media screen and (max-width: 1250px) {
@@ -72,13 +62,9 @@
 
 }
 @media screen and (max-width: 950px) {
-    #scroll-food{
-        top: -40%;
-    }
+    
 }
 @media screen and (max-width:890px) {
-    #scroll-food{
-        top: -30%;
-    }
+    
 }
 

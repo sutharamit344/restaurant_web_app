@@ -1,16 +1,13 @@
 .cards .card{
-    border-bottom: 4px solid #ffc61b;
     border-radius: 1rem;
     overflow: hidden;
     position:relative;
     padding-bottom: 2rem;
     transition: 0.1s;
     flex: 0 0 24%;
-    background-color: white;
+    box-shadow: 1px 1px 5px #1f1f1f;
 }
 .cards .card:hover{
-    outline: 1px solid #f7d981;
-    cursor: pointer;
     transform: scale(0.96);
 }
 .card-img{
@@ -35,7 +32,7 @@
     transition: 0.1s;
 }
 .cards .card:hover img{
-    transform: scale(106%);
+    transform: scale(1.05);
 }
 .card-detail{
     padding: .8rem;
@@ -70,9 +67,6 @@
     border: none;
     padding: 4px 8px;
     border-radius: 4px;
-}
-.card-price{
-    color: brown;
 }
 .card-bottom .add-btn{
     background-color: #fcca35;

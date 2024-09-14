@@ -43,7 +43,7 @@ export default function EventCards(props) {
         return(
             <div key={eve.id} className='event-card' style={{backgroundImage: `url("${domain}assets/eventimg/${eve.image}")`}}>
                 <div className='event-content'>
-                <div className='event-header'><h3>{eve.eventName}</h3> <p className='card-p'>{eve.date}</p></div>
+                <div className='event-header'><h3>{eve.eventName}</h3> <p className=''>{eve.date}</p></div>
                 <p className='event-des'>{eve.description}</p>
                 </div>
             </div>

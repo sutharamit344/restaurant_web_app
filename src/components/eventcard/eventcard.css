@@ -4,10 +4,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 200px 200px;
     gap: 20px;
-}
-.event-cards{
     grid-column: 1/ span 12;
-
 }
 .event-card{
     display: flex;
@@ -15,17 +12,18 @@
     justify-content: end;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    border-radius: 1rem;
-    border-bottom: 4px solid #ffc61b;
     color: white;
+    border-radius: 1rem;
+    overflow: hidden;
 }
 .event-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .event-content{
     padding: 1rem;
-    background: linear-gradient(to bottom, transparent, black);
+    background: linear-gradient(to bottom, transparent, black 50%);
 }
 .event-des{
     height: 0px;

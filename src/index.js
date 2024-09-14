@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { FoodProvider } from "./components/foodprovider/foodprovider";
+import { DarkModeProvider } from "./components/darkmode/darkmode";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <FoodProvider>
+  <DarkModeProvider>
     <App />
+  </DarkModeProvider>
+  </FoodProvider>
   </React.StrictMode>
 );
 
