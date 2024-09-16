@@ -1,5 +1,5 @@
 import React from "react";
-import { IoPeople, IoSparklesOutline, IoTimerOutline } from "react-icons/io5";
+import { IoPeopleOutline, IoSparklesOutline, IoTimerOutline } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
 import ConfPayment from "../congpayment/confpayment";
 import Payment from "../paymentmethods/payment";
@@ -60,10 +60,10 @@ export default function Table() {
     return (
         <>
         <section id="table-section" className="grid">
-            <div id="form-body" className="bg-item">
+            <div id="form-body">
                 <div className={`form-box ${step === "/booking" ? "" : "hidden"}`}>
                 <form className="form-col-2">
-                    <h2 className="h2 col-2">Booking</h2>
+                    <h2 className="h2 col-2">Table Booking</h2>
                     <div className="form-control">
                         <label htmlFor="bookingDate">Date</label>
                         <input type="date" name="bookingDate" id="bookingDate"/>
@@ -90,7 +90,7 @@ export default function Table() {
                             <option value="">50 Guest Hall</option>
                             <option value="">100 Guest Hall</option>
                         </select>
-                        <span className="input-icon"><IoPeople/></span>
+                        <span className="input-icon"><IoPeopleOutline/></span>
                         </div>
                     </div>
                     <div className="form-control">

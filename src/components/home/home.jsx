@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import ReviewCard from '../reviewcard/reviewcard';
@@ -7,7 +7,6 @@ import { FoodContext } from '../foodprovider/foodprovider';
 import Card from '../food_card/card';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
-import { UseDarkMode } from '../darkmode/darkmode';
 const origin = window.location.origin;
 
 export const fastFoodItems = [
@@ -65,10 +64,10 @@ export const fastFoodItems = [
 
 
 export default function Home() {
+
 const [nextDish, setNextDish] = useState(0)
 const {trending} = useContext(FoodContext)
 const navigate = useNavigate()
-const {darkMode, toggleDarkMode} = useContext(UseDarkMode)
 
 const nextDishHandler = () => {
   nextDish < fastFoodItems.length-1 &&
@@ -119,19 +118,19 @@ const prevDishHandler = () => {
       <h1 className='h2'>
       <div className='sh'></div>
        Most Served</h1>
-      <div className='cards'>
+      <div className='cards fix-card'>
         <Card itemList={trending}/>
       </div>
     </section>
-    <section id='review-section' className={`grid bg-dark`}>
+    <section id='review-section' className={`grid bg-yellow`}>
       <h1 className='h2'>
       <div className='sh'></div>
        Customer Review</h1>
-      <div className='cards'>
+      <div className='cards fix-card'>
       <ReviewCard length="4"/>
       </div>
       </section>
-    <section id='event-section' className={`grid bg-yellow`}>
+    <section id='event-section' className={`grid`}>
       <h1 className='h2'>
       <div className='sh'></div>
         Events</h1>

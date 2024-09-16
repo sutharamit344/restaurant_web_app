@@ -4,14 +4,13 @@
     position:relative;
     padding-bottom: 2rem;
     transition: 0.1s;
-    flex: 0 0 24%;
+    flex: 0 0 13rem;
     box-shadow: 1px 1px 5px #1f1f1f;
 }
 .cards .card:hover{
     transform: scale(0.96);
 }
 .card-img{
-    height: 160px;
     border-radius: 1rem;
     overflow: hidden;
     position: relative;

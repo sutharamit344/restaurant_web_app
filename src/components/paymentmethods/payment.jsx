@@ -1,5 +1,5 @@
 import React from 'react'
-import { IoIosCard } from "react-icons/io";
+import { IoCardOutline } from 'react-icons/io5';
 
 export default function Payment({nextPath, prevPath}) {
   return (
@@ -13,7 +13,7 @@ export default function Payment({nextPath, prevPath}) {
                 <option value="">Credit card</option>
                 <option value="">Debit card</option>
             </select>
-            <span className="input-icon"><IoIosCard/></span>
+            <span className="input-icon"><IoCardOutline/></span>
             </div>
         </div>
         <div className="form-control">
@@ -21,27 +21,29 @@ export default function Payment({nextPath, prevPath}) {
             <input type="text" name="carHolderName" id="carHolderName" placeholder="Card holder name"/>
         </div>
         <div className="form-control">
-        <div>
-            <label htmlFor="validate">Ex. Date</label>
-            <div className="input-group">
-                <input type="text" name="validate" id="validate" placeholder="mm" maxLength="2"/>/
-                <input type="text" name="validate"placeholder="yy" maxLength="2"/>
+            <div className='input-half'>
+            <label htmlFor="carHolderName">Ex. Date</label>
+            <div className='input-group in-center'>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`2`} placeholder="MM"/
+            ><span>/</span>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`2`} placeholder="YY"/>
             </div>
-        </div>
-        <div>
-            <label htmlFor="cvv">CVV</label>
-            <input type="numemailber" name="cvv" id="cvv" placeholder="CVV"/>
-        </div>
+            </div>
+            <div className='input-half'>
+            <label htmlFor="carHolderName">CVV</label>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`3`} placeholder="CVV"/>
+            </div>
         </div>
         <div className="form-control">
-            <label htmlFor="cardNumber">Card Number</label>
-            <div className="input-group">
-                <input type="text" name="cardNumber1" id="cardNumber" placeholder="0000" maxLength="4"/>
-                <input type="text" name="cardNumber2" placeholder="0000" maxLength="4" />
-                <input type="text" name="cardNumber3" placeholder="0000" maxLength="4" />
-                <input type="text" name="cardNumber4" placeholder="0000" maxLength="4" />
+            <label htmlFor="carHolderName">Card Number</label>
+            <div className='input-group in-center'>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`4`} placeholder="0000"/>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`4`} placeholder="0000"/>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`4`} placeholder="0000"/>
+            <input type="text" name="carHolderName" id="carHolderName" maxLength={`4`} placeholder="0000"/>
             </div>
-        </div><input type="submit" onClick={(e) => { nextPath(e); }} value="Continue" className="btn-yellow form-btn"/>
+        </div>
+        <input type="submit" onClick={(e) => { nextPath(e); }} value="Continue" className="btn-yellow form-btn"/>
         <input type="submit" onClick={(e) => { prevPath(e); }} value="Back" className="btn-yellow form-btn"/>
     </form>
     </>

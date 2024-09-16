@@ -20,6 +20,9 @@
   top: 0px;
   right: 1px;
   padding: 1rem;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px black;
+  display: none;
 }
 .knob-btn{
   border-radius: 50%;
@@ -33,7 +36,7 @@
   height: 31px;
 }
 #cart{
-  width: 500px;
+  max-width: 500px;
   height: 100%;
   margin-left: auto;
   position: fixed;
@@ -92,7 +95,7 @@
   padding-left: 8px;
   text-align: left;
   text-wrap: nowrap;
-  flex: 3;
+  flex: 2;
 }
 .cart-item-qty-btn{
   display: flex;
@@ -155,4 +158,11 @@
 .cart-item-dec:active{
   outline: 1px solid #ff1b1b;
   color: white;
+}
+
+@media (max-width: 800px) {
+  .cart-knob{
+    top: 79%;
+    right: 8px;
+  }
 }

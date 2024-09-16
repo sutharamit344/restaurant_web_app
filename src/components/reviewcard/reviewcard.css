@@ -7,7 +7,7 @@
     border-radius: 1rem;
     box-shadow: 1px 1px 5px #1f1f1f;
     transition: .1s;
-    flex: 1 1;
+    flex: 0 0 13rem;
 }
 .review-card:hover{
     transform: scale(0.96);

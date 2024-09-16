@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './footer.css';  // External CSS file for styling
 import { AiFillFacebook } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import FoodCart from '../foodcart/foodcart';
 import { IoIosRestaurant } from 'react-icons/io';
-import { UseDarkMode } from '../darkmode/darkmode';
 
 const Footer = () => {
-
-  const {darkMode} = useContext(UseDarkMode)
 
   return (<>
   
@@ -60,7 +56,6 @@ const Footer = () => {
         <p>&copy; 2024 Restaurant All rights reserved. | <a href="/terms">Terms & Conditions</a> | <a href="/privacy">Privacy Policy</a></p>
       </div>
     </footer>
-    <FoodCart/>
     </>
   );
 }

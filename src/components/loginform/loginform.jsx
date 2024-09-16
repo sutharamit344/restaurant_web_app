@@ -8,9 +8,9 @@ const domain = window.location.origin;
 export default function Loginform() {
   const location = useLocation();
   const activePath = location.pathname;
-
   const [loginPassVisibility, setLoginPassVisibility] = useState(false);
   const [signupPassVisibility, setSignupPassVisibility] = useState(false);
+  const [signup, setSignup] = useState()
 
   const handleLoginPassToggle = () => {
     setLoginPassVisibility(!loginPassVisibility);
@@ -22,12 +22,12 @@ export default function Loginform() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    console.log(e.target)
   };
 
   return (
     <section id='login-section' className='grid'>
-      <div id='form-body' className={`bg-item`}>
+      <div id='form-body' className={`bg-dark`}>
         <div className={`form-box login ${activePath === "/login" ? "" : "hidden"}`}>
           <form onSubmit={handleSubmit} className='form-col-1'>
             <h2 className='h2'>LogIn</h2>
