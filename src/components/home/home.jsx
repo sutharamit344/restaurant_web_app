@@ -95,14 +95,14 @@ const prevDishHandler = () => {
             </div>
         <div id='instant-food'>
             <div id='scroll-food'>
-            <IoIosArrowBack className='arrw-btn' onClick={prevDishHandler} aria-label='previous dish'/>
+            <IoIosArrowBack className='arrw-btn arrow-back' onClick={prevDishHandler} aria-label='previous dish'/>
           <div className='scroller'>
             {
               fastFoodItems.map((dish, i) => {
                 return (
                   <div key={i} className='card' style={{transform:`translateX(-${nextDish*100}%)`}}>
                   <div className='dish-img' style={{transform:`rotateZ(-${nextDish*360}deg)`}}>
-                  <img src={origin+dish.imageUrl} alt="fast food"/>
+                  <img src={origin+dish.imageUrl} alt="fast food" style={{transform: `scale(${nextDish === i ? "1":"0"})`}}/>
                   </div>
                   <h2>{dish.name}</h2>
                   </div>
@@ -110,7 +110,7 @@ const prevDishHandler = () => {
               })
             }
           </div>
-            <IoIosArrowForward className='arrw-btn' onClick={nextDishHandler}/>
+            <IoIosArrowForward className='arrw-btn arrow-forward' onClick={nextDishHandler}/>
             </div>
         </div>
     </section>

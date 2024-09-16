@@ -58,8 +58,8 @@ useEffect(() => {
         <div className='nav-icon' onClick={handleToggleCart}>
         <img src="/assets/img/food-cart.svg" className={`icon svg`} alt="food cart" />
         </div>
-        <div className='nav-icon'>
-          <MdMenu className='icon' id='toggleMenu' onClick={handleTOggleMenu}/>
+        <div className='nav-icon' id='toggleMenu'>
+          <MdMenu className='icon' onClick={handleTOggleMenu}/>
         </div>
       </div>
 

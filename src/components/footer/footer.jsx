@@ -12,7 +12,7 @@ const Footer = () => {
   <footer className={`footer-container bg-footer`}>
       <div className="footer-grid">
         
-        <div className="footer-column">
+        <div className="footer-column f-col-1">
             <div id='footer-logo'>
     <a href="/" className='logo'>
     <IoIosRestaurant className='logo-img'/>
@@ -22,7 +22,7 @@ const Footer = () => {
           <p>Welcome to Restaurant! We specialize in authentic cuisine, served with love. Join us for delicious meals and special event celebrations.</p>
        </div>
 
-        <div className="footer-column col-right">
+        <div className="footer-column">
           <ul>
             <li><h4>Quick Links</h4></li>
             <li><a href="#events">Home</a></li>
@@ -53,7 +53,7 @@ const Footer = () => {
 
       {/* Footer Bottom Section */}
       <div className="footer-bottom">
-        <p>&copy; 2024 Restaurant All rights reserved. | <a href="/terms">Terms & Conditions</a> | <a href="/privacy">Privacy Policy</a></p>
+        <p><p>&copy; 2024 Restaurant All rights reserved.</p> <a href="/terms">Terms & Conditions</a> | <a href="/privacy">Privacy Policy</a></p>
       </div>
     </footer>
     </>

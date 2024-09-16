@@ -86,8 +86,8 @@
 }
 #nav-icons{
     grid-column: 11/13;
+    justify-content: flex-start;
     display: flex;
-    justify-content: flex-end;
     height: 100%;
 }
 #toggleMenu{
@@ -118,9 +118,13 @@
         position: absolute;
         right: 0px;
         top: 100%;
-        padding: 1rem 0;
+        padding: 0px;
         border-radius: 2rem;
         box-shadow: 1px 1px 5px black;
+        height: auto;
+    }
+    .nav-icon{
+        padding: 1rem;
     }
     .bg-dark #nav-icons{
         background-color: #292929;
@@ -173,10 +177,12 @@
         right: 0px;
         top: 0px;
         padding: 0;
+        height: 100%;
     }
     .nav-icon{
     padding: 0 8px;
     font-size: 22px;
+    
     }
     .bg-light #nav-icons,
     .bg-dark #nav-icons{
@@ -188,6 +194,6 @@
         transition: .5s;
     }
     #toggleMenu{
-        display: block;
+        display: flex;
     }
 }
