@@ -35,7 +35,7 @@ function Failed() {
 export default function ConfPayment(props) {
   const navigate = useNavigate()
 
-  const randomOtp = Math.floor(Math.random()*10000); 
+  const randomOtp = Math.floor(Math.random()*9999); 
   const userINput = parseInt(prompt("Varification COde, Your dummy code: "+randomOtp))
 
   useEffect(() => {

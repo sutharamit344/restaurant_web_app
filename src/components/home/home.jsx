@@ -1,9 +1,9 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import ReviewCard from '../reviewcard/reviewcard';
 import EventCards from '../eventcard/eventcard';
-import { FoodContext } from '../foodprovider/foodprovider';
+import { FoodContext } from '../contextapis/foodprovider';
 import Card from '../food_card/card';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
@@ -87,7 +87,7 @@ const prevDishHandler = () => {
             <h2>Welcome to</h2>
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
             <p className='p'>Experience the taste of luxury with our exquisite dishes made from the freshest ingredients.</p>
-                <h1>Order Over ₹299/- Get 50% Off</h1>
+                <h1><div>Order Over ₹299/-</div><div> Get 50% Off</div></h1>
                   <div className='ca-btn-g'>
                     <button className='btn-yellow' onClick={() => navigate("/food-order")} style={{marginRight:"1rem"}}>Order Foods</button>
                     <button className='btn-yellow' onClick={() => navigate("/booking")}>Reserve aTable</button>
@@ -121,8 +121,7 @@ const prevDishHandler = () => {
       <div className='cards fix-card'>
         <Card itemList={trending}/>
       </div>
-    </section>
-    <section id='review-section' className={`grid bg-yellow`}>
+      
       <h1 className='h2'>
       <div className='sh'></div>
        Customer Review</h1>

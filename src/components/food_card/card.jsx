@@ -1,13 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import "./card.css"
 import { BsCartDashFill, BsCartPlusFill } from 'react-icons/bs'
-import { UseDarkMode } from '../darkmode/darkmode'
 
 
 export default function Card({itemList}) {
 
   const origin = window.location.origin
-  const {darkMode} = useContext(UseDarkMode)
 
   return (
     <>

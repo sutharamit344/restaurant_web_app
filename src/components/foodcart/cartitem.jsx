@@ -1,8 +1,6 @@
-import React, { useContext } from "react"
-import { UseDarkMode } from "../darkmode/darkmode"
+import React from "react"
 
 export default function CartOtem() {
-    const {darkMode} = useContext(UseDarkMode)
     return (
         <>
         <div className={`cart-items bg-item`}>

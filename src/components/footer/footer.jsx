@@ -53,7 +53,7 @@ const Footer = () => {
 
       {/* Footer Bottom Section */}
       <div className="footer-bottom">
-        <p><p>&copy; 2024 Restaurant All rights reserved.</p> <a href="/terms">Terms & Conditions</a> | <a href="/privacy">Privacy Policy</a></p>
+        <p>&copy; 2024 Restaurant All rights reserved.</p> <p><a href="/terms">Terms & Conditions</a> / <a href="/privacy">Privacy Policy</a></p>
       </div>
     </footer>
     </>

@@ -7,6 +7,7 @@
   bottom: auto;
   padding: 1rem 15%;
   box-shadow: 1px 1px 5px black;
+  overflow: visible;
 } 
 #navbar a{
     text-decoration: none;
@@ -48,6 +49,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .nav-icon{
     display: flex;
@@ -92,6 +94,32 @@
 }
 #toggleMenu{
     display: none;
+}
+
+.nav-hover-box{
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    box-shadow: 1px 1px 10px black;
+    font-weight: normal;
+    z-index: 999999;
+    display: none;
+}
+.nav-hover-item{
+    padding: 0.5rem 2rem;
+}
+.nav-hover-item:hover{
+    background-color: rgb(61, 61, 61);
+}
+.nav-hover-logout{
+    border-top: 1px solid yellow;
+    padding: 0.5rem 2rem;
+}
+.nav-hover-logout:hover{
+    color: rgb(242, 255, 129);
+}
+.nav-user-name:hover .nav-hover-box{
+    display: block;
 }
 
 @media (max-width: 1080px) {
@@ -154,7 +182,7 @@
         padding: 10px;
     }
     .hideMenu{
-        top: -220px;
+        top: -230px;
     }
     .showMenu{
         top: 100%;

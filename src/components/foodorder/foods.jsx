@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Card from '../food_card/card'
-import { FoodContext } from '../foodprovider/foodprovider'
+import { FoodContext } from '../contextapis/foodprovider'
 import Footer from '../footer/footer'
 
 export default function Foods() {
