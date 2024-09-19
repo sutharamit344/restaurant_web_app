@@ -42,15 +42,15 @@ const IsLogout = () => {
 const IsLogin = () => {
   return (
     <li className="nav-item">
-    <Link className='nav-link nav-user-name'>
-    <h3>Hi </h3> <span> '{login.name}</span>
-    <div className='nav-hover-box bg-item'>
+    <span className='nav-link nav-user-name'>
+    <h3>Hi' </h3> <span>{login.username}</span>
+    <div className='nav-hover-box bg-item' onClick={handleTOggleMenu}>
     <div className='nav-hover-item'>Profile</div>
     <div className='nav-hover-item'>Bookings</div>
     <div className='nav-hover-item'>Orders</div>
       <div className='nav-hover-logout' onClick={handleLogout}>LogOut</div>
     </div>
-    </Link>
+    </span>
     </li>
   )
 }
@@ -92,7 +92,7 @@ const IsLogin = () => {
           <MdMenu className='icon' onClick={handleTOggleMenu}/>
         </div>
       </div>
-
+    <section id="black-wall" onClick={handleTOggleMenu} className={toggleMenu ? "black-wall-show" : "black-wall-hide"}></section>
     <FoodCart cart={{toggleCart, handleToggleCart}}/>
     <div className='alert-container'>
     <Alert alert={alert} closeAlert={closeAlert}/>

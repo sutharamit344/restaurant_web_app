@@ -32,7 +32,7 @@ body{
 }
 .alert{
   width: 100%;
-  min-height: 70px;
+  min-height: 40px;
   padding: 0 15%;
   display: flex;
   justify-content: space-between;
@@ -46,7 +46,7 @@ body{
   transform: translateY(-100%);
 }
 .alert span{
-  padding: 1rem;
+  padding: 1rem 0;
 }
 .alert-red{
   background-color: #ff8c8c;
@@ -223,8 +223,7 @@ body{
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 20px;
-  padding: 1rem 5px 0 5px;
-  margin: 0 0 1rem 0;
+  padding: 1rem 5px;
 }
 .fix-card{
   justify-content: space-around;
@@ -460,7 +459,7 @@ textarea{
   }
 }
 @media (max-width: 650px) {
-  .grid, .footer-container{
+  .grid, .footer-container, .alert{
     padding-left: 1rem;
     padding-right: 1rem;
   }

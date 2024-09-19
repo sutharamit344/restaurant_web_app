@@ -24,6 +24,8 @@ export default function Loginform() {
     cpass: false
   });
   const [formData, setFormData] = useState({
+    username: "",
+    usernameTouched: false,
     email: "",
     emailTouched: false,
     pass: "",
@@ -43,9 +45,10 @@ export default function Loginform() {
     setPassVisibility({...passVisibility, [name]: !passVisibility[name]})
   };
 
-  const {email, emailTouched, pass, passTouched, cpass, cpassTouched} = formData;
+  const {username, usernameTouched, email, emailTouched, pass, passTouched, cpass, cpassTouched} = formData;
 
   const valid = {
+    isUsername: username && usernameTouched && (username.length < 2 || username.length > 6),
     isEmail: email && emailTouched && !validator.isEmail(email),
     isPass: pass && passTouched && !validator.isStrongPassword(pass,{
       minLength: 8,
@@ -58,7 +61,7 @@ export default function Loginform() {
   }
 
   const auth = (formType) => {
-    const authCheck = handleUserAuth({formType, email, pass})
+    const authCheck = handleUserAuth({formType, username, email, pass})
     handleAlert(authCheck)
   }
 
@@ -66,7 +69,7 @@ export default function Loginform() {
     e.preventDefault();
     setFormData({...formData, submitTouched: true})
     if(location.pathname === "/signup"){
-    if(email && !valid.isPass && cpass && pass === cpass){
+    if(!valid.isUsername && !valid.isPass && cpass && pass === cpass){
       auth("signup")
     }}
     if(location.pathname === "/login"){
@@ -84,21 +87,19 @@ export default function Loginform() {
             <h2 className='h2'>LogIn</h2>
             <div className='form-control'>
               <label htmlFor="login-email">Email</label>
-                  <input 
-                  type="email" 
-                  name='email' 
-                  value={formData.email} 
-                  onChange={handleInputChange} 
+              <input type="email" name='email'
+                  style={{outlineColor: valid.isEmail ? "red" : ""}} 
+                  value={email} onChange={handleInputChange} 
+                  onBlur={() => setFormData(email ? {...formData, emailTouched: true} : {...formData, emailTouched: false})}
                   placeholder='Email' id='login-email'
-                  autoComplete='email'
-                  />
+                  autoComplete='email'/>
                   { formData.submitTouched && !email && <div className='error-msg'>Email is required.</div>}
                   { formData.submitTouched && valid.isEmail && <div className='error-msg'>Email is invalid.</div>}
             </div>
             <div className='form-control'>
               <label htmlFor="login-password">Password</label>
               <div className='input-group'
-                  style={{outlineColor: !valid.isPass ? "" : "red"}} >
+                  style={{outlineColor: valid.isPass ? "red" : ""}} >
                 <input 
                   type={passVisibility.pass ? "text" : "password"} 
                   placeholder='Password' 
@@ -128,9 +129,20 @@ export default function Loginform() {
           <form onSubmit={handleSubmit} className='form-col-1' noValidate>
             <h2 className='h2'>SignUp</h2>
             <div className='form-control'>
+              <label htmlFor="signup-username">Nick Name</label>
+              <input type="text" name='username'
+                  style={{outlineColor: valid.isUsername ? "red" : ""}} 
+                  value={username} onChange={handleInputChange} 
+                  onBlur={() => setFormData(username ? {...formData, usernameTouched: true} : {...formData, usernameTouched: false})}
+                  placeholder='Username' id='signup-username'
+                  autoComplete='name'/>
+                  { formData.submitTouched && !username && <div className='error-msg'>Nick name is required.</div>}
+                  { formData.submitTouched && valid.isUsername && <div className='error-msg'>Nick name is invalid.</div>}
+            </div>
+            <div className='form-control'>
               <label htmlFor="signup-email">Email</label>
               <input type="email" name='email'
-                  style={{outlineColor: !valid.isEmail ? "" : "red"}} 
+                  style={{outlineColor: valid.isEmail ? "red" : ""}} 
                   value={email} onChange={handleInputChange} 
                   onBlur={() => setFormData(email ? {...formData, emailTouched: true} : {...formData, emailTouched: false})}
                   placeholder='Email' id='signup-email'
@@ -141,7 +153,7 @@ export default function Loginform() {
             <div className='form-control'>
               <label htmlFor="signup-password">Password</label>
               <div className='input-group'
-                  style={{outlineColor: !valid.isPass ? "" : "red"}} >
+                  style={{outlineColor: valid.isPass ? "red" : ""}} >
                 <input 
                   type={passVisibility.pass ? "text" : "password"} 
                   placeholder='Password' 
@@ -160,7 +172,7 @@ export default function Loginform() {
             <div className='form-control'>
               <label htmlFor="signup-c-password">Confirm password</label>
               <div className='input-group'
-                  style={{outlineColor: !valid.isCpass ? "" : "red"}}>
+                  style={{outlineColor: valid.isCpass ? "red" : ""}}>
                 <input 
                   type={passVisibility.cpass ? "text" : "password"} 
                   placeholder='Confirm password' 

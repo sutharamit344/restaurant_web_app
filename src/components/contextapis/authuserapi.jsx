@@ -15,7 +15,7 @@ export default function AuthUserProvider({children}) {
     const loginObj = {
         id: "",
         email: "",
-        name: "",
+        username: "",
         status: false
     }
     
@@ -56,7 +56,7 @@ export default function AuthUserProvider({children}) {
                     if(find[0].pass === formData.pass){
                     setLogin({
                         id: "",
-                        name: "",
+                        username: find[0].username,
                         email: find[0].email,
                         status: true
                     })
@@ -80,7 +80,6 @@ export default function AuthUserProvider({children}) {
         if(login.status) {
             setLogin(loginObj)
         }
-        console.log(login.status)
     }
 
   return (

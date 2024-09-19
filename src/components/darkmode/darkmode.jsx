@@ -4,6 +4,8 @@ export const UseDarkMode = createContext()
 
 export function DarkModeProvider({children}) {
 
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  console.log(mediaQuery)
   
     const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true" ? true : false)
 
