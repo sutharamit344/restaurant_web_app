@@ -27,7 +27,7 @@ const handleToggleCart = () => {
 }
 useEffect(() => {
   setToggleMenu(false)
-},[activePath])
+},[activePath, handleLogout])
 
 
 const IsLogout = () => {
@@ -39,12 +39,14 @@ const IsLogout = () => {
   </li>
   )
 }
+
+
 const IsLogin = () => {
   return (
     <li className="nav-item">
     <span className='nav-link nav-user-name'>
     <h3>Hi' </h3> <span>{login.username}</span>
-    <div className='nav-hover-box bg-item' onClick={handleTOggleMenu}>
+    <div className='nav-hover-box bg-item'>
     <div className='nav-hover-item'>Profile</div>
     <div className='nav-hover-item'>Bookings</div>
     <div className='nav-hover-item'>Orders</div>
@@ -92,12 +94,11 @@ const IsLogin = () => {
           <MdMenu className='icon' onClick={handleTOggleMenu}/>
         </div>
       </div>
-    <section id="black-wall" onClick={handleTOggleMenu} className={toggleMenu ? "black-wall-show" : "black-wall-hide"}></section>
     <FoodCart cart={{toggleCart, handleToggleCart}}/>
     <div className='alert-container'>
     <Alert alert={alert} closeAlert={closeAlert}/>
     </div>
-    
+    <section id="black-wall" onClick={handleTOggleMenu} className={toggleMenu ? "black-wall-show" : "black-wall-hide"}></section>
     </nav>
     </>
   );

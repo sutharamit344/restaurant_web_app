@@ -117,7 +117,7 @@ export default function Loginform() {
               <a href="/">?Forgot password</a>
             </div>
             <input type="submit" value="LogIn" className="btn-yellow form-btn"/>
-            <div className='form-control'>
+            <div className='form-link'>
               <Link to="/signup">SignUp</Link>
             </div>
           </form>
@@ -181,6 +181,7 @@ export default function Loginform() {
                   onChange={handleInputChange}
                   onBlur={() => setFormData(email && pass && cpass ? {...formData, cpassTouched: true} : {...formData, cpassTouched: false})}
                   id='signup-c-password'
+                  autoComplete='password'
                 />
                 <span className='input-icon' data-name="cpass" onClick={handlePassVisibility}>
                   {passVisibility.cpass ? <FaRegEye /> : <FaRegEyeSlash />}
@@ -190,7 +191,7 @@ export default function Loginform() {
                   { formData.submitTouched && valid.isCpass && <div className='error-msg'>Password not match.</div>}
             </div>
             <input type="submit" value="SignUp" className="btn-yellow form-btn"/>
-            <div className='form-control'>
+            <div className='form-link'>
               <Link to="/login">LogIn</Link>
             </div>
           </form>

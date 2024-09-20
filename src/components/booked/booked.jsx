@@ -1,57 +1,71 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./booked.css"
 import { IoCalendarOutline, IoCardOutline, IoPeopleOutline, IoSparklesOutline, IoTimeOutline } from 'react-icons/io5'
 import { BiRupee } from 'react-icons/bi'
+import { AuthUserContext } from '../contextapis/authuserapi'
+import { BookingContext } from '../contextapis/bookingapi'
 
 export default function Booked() {
+    const {login} = useContext(AuthUserContext)
+    const {myBooking} = useContext(BookingContext)
+
+
+
   return (
     <>
     <section id='booked' className='grid'>
         <div className='container'>
             <h1 className='h2'>Your Bookings</h1>
-                    <div className='booking-card bg-item'>
+            {
+                myBooking.length && myBooking.map((booked, i) => {
+                    return (
+                        <div key={i} className='booking-card bg-item'>
                             <div>
                                 <div className='item-g'>
                                 <div className='b-item'>
-                                    <IoCalendarOutline/> date</div>
+                                    <IoCalendarOutline/> {booked.date}</div>
                                 <div className='b-item'>
-                                    <IoTimeOutline/> time</div>
+                                    <IoTimeOutline/> {booked.time}</div>
                                 </div>
                                 <div className='item-g'>
                                 <div className='b-item'>
-                                    <IoPeopleOutline/> guest</div>
+                                    <IoPeopleOutline/> {booked.guest}</div>
                                 <div className='b-item'>
-                                    <IoSparklesOutline/> Occation</div>
+                                    <IoSparklesOutline/> {booked.occation}</div>
                                 </div>
                             </div>
                             <div>
                                 <div className='item-g'>
-                                <div className='b-item'>name</div>
-                                <div className='b-item'>mobile</div>
+                                <div className='b-item'>{booked.name}</div>
+                                <div className='b-item'>{booked.mobile}</div>
                                 </div>
                                 <div className='item-g'>
-                                <div className='b-item'>email</div>
-                                <div className='b-item'>request</div>
+                                <div className='b-item'>{booked.email}</div>
+                                <div className='b-item'>{booked.request}</div>
                                 </div>
                             </div>
                             <div>
                                 <div className='item-g'>
                                 <div className='b-item'>
-                                    <IoCardOutline/> card type</div>
+                                    <IoCardOutline/> {booked.cardType}</div>
                                 </div>
                                 <div className='item-g'>
                                 <div className='b-item'>
-                                    <BiRupee/> amount</div>
+                                    <BiRupee/> {booked.amount} - {booked.paymentStatus ? "Paid" : "Pay"}</div>
                                 </div>
                             </div>
                             <div>
                                 <div className='item-g'>
-                                <div className='b-item'>date</div>
+                                <div className='b-item'></div>
                                 </div>
                                 <div className='item-g'>
-                                <div className='b-item'>time</div></div>
+                                <div className='b-item'></div></div>
                             </div>
                     </div>
+                    )
+                })
+            }
+                    
         </div>
     </section>
     </>

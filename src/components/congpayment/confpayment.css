@@ -31,3 +31,7 @@
 .failImg img{
     height: 170px;
 }
+
+#confPayment button{
+    margin: 1rem;
+}

@@ -29,7 +29,7 @@ export default function AuthUserProvider({children}) {
     },[login])
 
     const handleUserAuth = (formData) => {
-        let alertMsg = {};
+        let alertMsg = "";
         if(formData.formType === "signup"){
         if(user.length) {
             const find = user.some((u) => {
@@ -39,11 +39,21 @@ export default function AuthUserProvider({children}) {
             if(find){
                 alertMsg = { type: "red", msg: "Email already exist, if "+formData.email+" your contiune to login"}
             }else{
-                setUser([...user, formData])
+                setUser([...user, {
+                    id: user.length+1,
+                    username: formData.username,
+                    email: formData.email,
+                    pass: formData.pass
+                }])
                 alertMsg = { type: "green", msg: "Account created successfully. email: "+formData.email}
             }
         }else{
-            setUser([...user, formData])
+            setUser([...user, {
+                id: user.length+1,
+                username: formData.username,
+                email: formData.email,
+                pass: formData.pass
+            }])
             alertMsg = { type: "green", msg: "Account created successfully. email: "+formData.email}
         }}
 
@@ -55,7 +65,7 @@ export default function AuthUserProvider({children}) {
                 if(find.length){
                     if(find[0].pass === formData.pass){
                     setLogin({
-                        id: "",
+                        id: find[0].id,
                         username: find[0].username,
                         email: find[0].email,
                         status: true
@@ -80,6 +90,7 @@ export default function AuthUserProvider({children}) {
         if(login.status) {
             setLogin(loginObj)
         }
+        console.log(user)
     }
 
   return (

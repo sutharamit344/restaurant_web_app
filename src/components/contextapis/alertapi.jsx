@@ -29,9 +29,11 @@ export default function AlertApiProvider({children}) {
         )
       );
     }, 200);
-  }
-  const closeAlert = (id) => {
 
+  }
+
+
+  const closeAlert = (id) => {
     const hideAlert = alert.map((alert, i) => {
       return i === id ? {...alert, visible: false} : alert
     })
@@ -45,8 +47,12 @@ export default function AlertApiProvider({children}) {
     
   }
 
+  const clearAlert = () => {
+    setAlert([])
+  }
+
   return (
-    <AlertApiContext.Provider value={{alert, handleAlert, closeAlert}}>
+    <AlertApiContext.Provider value={{alert, clearAlert, handleAlert, closeAlert}}>
         {children}
     </AlertApiContext.Provider>
   )
