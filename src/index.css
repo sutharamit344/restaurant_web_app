@@ -461,13 +461,11 @@ textarea{
   display: flex;
   gap: 8px;
 }
+.half-control .error-msg,
 .form-control .error-msg{
   grid-column: 1/3;
   color: #ff6060;
   font-size: 12px;
-}
-.error-msg{
-  color: #ff0000;
 }
 #black-wall{
   width: 100%;

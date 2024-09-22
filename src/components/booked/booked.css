@@ -1,30 +1,42 @@
-
+#booking-Cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 1rem 0 0 0;
+}
 .booking-card{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    gap: 1rem;
     padding: 1rem;
-    margin: 1rem 0;
     border-radius: 8px;
     box-shadow: 1px 1px 5px #1f1f1f;
 }
-.booking-card > div{
-    width: 100%;
-}
-.booking-card > div{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
 .booking-card .item-g {
-    width: 100%;
     padding: 4px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
     align-items: center;
 }
 .b-item{
     display: flex;
-    align-items: center;
-    gap: 4px;
+    gap: 8px;
     width: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    font-size: 13px;
+}
+.pay-btn{
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #00b436fd;
+    color: white;
+}
+
+@media (max-width: 650px) {
+    #booking-Cards{
+        grid-template-columns: 1fr;
+    }
 }

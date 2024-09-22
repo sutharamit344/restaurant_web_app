@@ -35,3 +35,6 @@
 #confPayment button{
     margin: 1rem;
 }
+.error-msg{
+    color: red;
+}

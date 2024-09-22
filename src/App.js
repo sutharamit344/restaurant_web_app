@@ -9,6 +9,7 @@ import Checkout from "./components/checkout/checkout";
 import { UseDarkMode } from "./components/darkmode/darkmode";
 import Booked from "./components/booked/booked";
 import Loader from "./components/loader/loader";
+import ConfPayment from "./components/congpayment/confpayment";
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
       <Route path="/booked" element={<Booked/>}></Route>
       <Route path="/login" element={<Loginform activeForm={true}/>} ></Route>
       <Route path="/signup" element={<Loginform activeForm={false}/>} ></Route>
-      <Route path="/conf-payment" element={<Table/>}></Route>
+      <Route path="/conf-payment/:id/:dataname/:type/:redirect" element={<ConfPayment/>}></Route>
       <Route path="/food-order" element={<Foods/>} />
       <Route path="/checkout" element={<Checkout/>} />
       <Route path="/delivery-address" element={<Checkout/>} />

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IoCalendar, IoCall, IoCard, IoCardOutline, IoMail, IoPeople, IoPerson, IoSparkles, IoTime, IoTimer } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
-import ConfPayment from "../congpayment/confpayment";
 import Payment from "../paymentmethods/payment";
 import { BookingContext } from "../contextapis/bookingapi";
 import { MdMessage } from "react-icons/md";
@@ -16,22 +15,22 @@ export default function Table() {
     const {login} = useContext(AuthUserContext)
     const {bookingObj, bookings, setBookings, timeSlots, guest, complexField} = useContext(BookingContext)
 
-    const [Booking, setBooking] = useState(bookingObj)
+    const [booking, setBooking] = useState(bookingObj)
 
     const [field, setField] = useState(complexField)
     
     const valid = {
-        isDate: Booking.date,
-        isTime: Booking.time,
-        isGuest: Booking.guest,
-        isOccation: Booking.occation,
+        isDate: booking.date,
+        isTime: booking.time,
+        isGuest: booking.guest,
+        isOccation: booking.occation,
         isFname: field.fname,
         isLname: field.lname,
-        isMobile: Booking.mobile,
-        isEmail: Booking.email,
-        isRquest: Booking.message,
-        isBooking: Booking.date && Booking.time && Booking.guest && Booking.occation ? true : false,
-        isContact: field.fname && Booking.mobile? true : false,
+        isMobile: booking.mobile,
+        isEmail: booking.email,
+        isRquest: booking.message,
+        isBooking: booking.date && booking.time && booking.guest && booking.occation ? true : false,
+        isContact: field.fname && booking.mobile? true : false,
         isCardDetail: field.cardType && field.cardHolder && field.exMonth && field.exYear && field.cvv && field.cardNum1 && field.cardNum2 && field.cardNum3 && field.cardNum4? true : false
     }
 
@@ -100,28 +99,23 @@ export default function Table() {
                 if(location.pathname === "/booking-contact"){
                     nextStep()
                 }
-                if(valid.isCardDetail){
-                    if(location.pathname === "/booking-payment"){
-                        nextStep()
-                    }
-                    if(confData && location.pathname === "/booking-overview"){
-                        setBooking((prev) => {
-                            return {...prev, 
-                                name: field.fname+" "+field.lname,
-                                cardType: field.cardType,
-                                cardHolder: field.cardHolder,
-                                exDate: field.exMonth+" "+field.exYear,
-                                cvv: field.cvv,
-                                cardNum: field.cardNum1+" "+field.cardNum2+" "+field.cardNum3+" "+field.cardNum4,
-                                amount: Booking.guest*100,
-                                bookingId: bookings.length+1,
-                                userId: ""
-                            }
-                        })                        
-                        nextStep()
-                    }else{
-                        navigate("/booking")
-                    }
+                    if(valid.isCardDetail){
+                        if(location.pathname === "/booking-payment"){
+                            nextStep()
+                                setBooking((prev) => {
+                                    return {...prev,
+                                        name: field.fname+" "+field.lname,
+                                        cardType: field.cardType,
+                                        cardHolder: field.cardHolder,
+                                        exDate: field.exMonth+" "+field.exYear,
+                                        cvv: field.cvv,
+                                        cardNum: field.cardNum1+" "+field.cardNum2+" "+field.cardNum3+" "+field.cardNum4,
+                                        amount: booking.guest*100,
+                                        userId: login.id,
+                                        paymentStatus: false
+                                    }
+                                })
+                        }
                 }else(
                     navigate("/booking-payment")
                 )
@@ -133,9 +127,19 @@ export default function Table() {
         }
     }
 
+    const goToPayment = () => {
+        if (confData) {
+          const objId = bookings.length + 1;
+          const newBooking = { ...booking, objId: objId };
+          setBookings([...bookings, newBooking]);
+          navigate(`/conf-payment/${objId}/bookings/Booking/booked`)
+        }
+      };
+      
+
     const handleInputChange = (e) => {
         let {name, value} = e.target;
-        setBooking({...Booking, [name]: value})
+        setBooking({...booking, [name]: value})
       }
       const handleComplexInput = (e) => {
         let {name, value} = e.target;
@@ -144,18 +148,18 @@ export default function Table() {
       }
 
       useEffect(() => {
-        if(confAll && location.pathname !== "/conf-payment"){
-            navigate("/booking")
+        if(confAll){
+            if(location.pathname !== "/booking"){
+                navigate(-1)
+            }
         }
-      },[field, navigate, confAll])
-      
-      const handlePayment = (status) => {
-        if(status){
-            setBookings([...bookings, {...Booking, paymentStatus: true, userId: login.id}])
-            setBooking({...Booking, ...bookingObj})
-            setField({...field, ...complexField})
-        }
-      }
+      })
+
+      useEffect(() => {
+        document.getElementsByName("date")[0].focus()
+        document.getElementsByName("fname")[0].focus()
+        document.getElementsByName("cardType")[0].focus()
+      },[location.pathname])
 
     return (
         <>
@@ -163,18 +167,18 @@ export default function Table() {
             <div id="form-body">
                 <div className={`form-box ${step === "/booking" ? "" : "hidden"}`}>
                 <form className="form-col-2">
-                    <h2 className="h2 col-2">Table Booking</h2>
+                    <h2 className="h2 col-2">Table booking</h2>
                     <div className="form-control">
                         <label htmlFor="bookingDate">Date</label>
                         <input type="date" name="date" id="bookingDate"
-                        value={Booking.date} onChange={handleInputChange}/>
+                        value={booking.date} onChange={handleInputChange}/>
                         {field.bookingSubmited && !valid.isDate && <div className="error-msg">Date is required.</div>}
                     </div>
                     <div className="form-control">
                     <label htmlFor="timeSlots">Time Slots</label>
                         <div className="input-group">
                         <select name="time" id="timeSlots"
-                        value={Booking.time} onChange={handleInputChange}>
+                        value={booking.time} onChange={handleInputChange}>
                             <option value="">Select time</option>
                             {
                                 timeSlots.map((time, i) => {
@@ -192,7 +196,7 @@ export default function Table() {
                         <label htmlFor="nOuest">Number Of Guest</label>
                         <div className="input-group">
                         <select name="guest" id="nOuest"
-                        value={Booking.guest} onChange={handleInputChange}>
+                        value={booking.guest} onChange={handleInputChange}>
                             <option value="">Select guest</option>
                             {
                                 guest.map((guest, i) => {
@@ -210,7 +214,7 @@ export default function Table() {
                     <label htmlFor="occation">Occation</label>
                         <div className="input-group">
                         <input type="text" name="occation" id="occation" list="occationList" placeholder="Occation"
-                        value={Booking.occation} onChange={handleInputChange}/>
+                        value={booking.occation} onChange={handleInputChange}/>
                         <datalist id="occationList">
                             <option value="Birthday"></option>
                             <option value="Annivarsary"></option>
@@ -244,19 +248,19 @@ export default function Table() {
                     </div>
                     <div className="form-control">
                         <label htmlFor="mobile">Mobile No. <sup>*</sup></label>
-                        <input type="number" name="mobile" id="mobile" placeholder="+91"
-                        value={Booking.mobile} onChange={handleInputChange} />
+                        <input type="mobile" name="mobile" id="mobile" placeholder="+91"
+                        value={booking.mobile} onChange={handleInputChange} />
                         {field.bookingSubmited && !valid.isMobile && <div className="error-msg">Mobile number is required.</div>}
                     </div>
                     <div className="form-control">
                         <label htmlFor="billEmail">Email</label>
                         <input type="email" name="email" id="billEmail" placeholder="Your email"
-                        value={Booking.email} onChange={handleInputChange} />
+                        value={booking.email} onChange={handleInputChange} />
                     </div>
                     <div className="form-control col-2">
                         <label htmlFor="message">Special message</label>
                         <textarea name="message" id="message" rows="2" placeholder="Special message"
-                        value={Booking.message} onChange={handleInputChange} ></textarea>
+                        value={booking.message} onChange={handleInputChange} ></textarea>
                     </div>
                     <input type="submit" onClick={handleBooking} value="Continue" className="btn-yellow form-btn"/>
                     <input type="submit" onClick={prevStep} value="Back" className="btn-yellow form-btn"/>
@@ -266,47 +270,46 @@ export default function Table() {
                 <div className="form-col-2 overview">
                     <h2 className="h2">Overview</h2>
                     <div className="overview-row col-2">
-                        <h3>Booking</h3>
+                        <h3>booking</h3>
                         <ul className="overview-ul">
-                            <li><IoCalendar/> {Booking.date}</li>
-                            <li><IoTime/>{Booking.time}</li>
-                            <li><IoPeople/>{Booking.guest} </li>
-                            <li><IoSparkles/>{Booking.occation}</li>
+                            <li><IoCalendar/> {booking.date}</li>
+                            <li><IoTime/>{booking.time}</li>
+                            <li><IoPeople/>{booking.guest} </li>
+                            <li><IoSparkles/>{booking.occation}</li>
                         </ul>
                     </div>
                     <div className="overview-row col-2">
                         <h3>Contact detail</h3>
                         <ul className="overview-ul">
                         <li><IoPerson/>{field.fname} {field.lname}</li>
-                        <li><IoCall/>{Booking.mobile}</li>
-                        <li><IoMail/>{Booking.email}</li>
-                        <li><MdMessage/>{Booking.message}</li>
+                        <li><IoCall/>{booking.mobile}</li>
+                        <li><IoMail/>{booking.email}</li>
+                        <li><MdMessage/>{booking.message}</li>
                         </ul>
                     </div>
                     <div className="overview-row col-2">
                         <h3>Payment Method</h3>
                         <ul className="overview-ul">
-                        <li><IoCard/>{Booking.cardType}</li>
-                        <li><IoPerson/>{Booking.cardHolder}</li>
+                        <li><IoCard/>{booking.cardType}</li>
+                        <li><IoPerson/>{booking.cardHolder}</li>
                         <li><IoCalendar/>{field.exMonth}/{field.exYear}</li>
-                        <li>CVV: {Booking.cvv}</li>
-                        <li><IoCardOutline/>{Booking.cardNum}</li>
+                        <li>CVV: {booking.cvv}</li>
+                        <li><IoCardOutline/>{booking.cardNum}</li>
                         </ul>
                     </div>
                     <div className="overview-row col-2">
                         <h3>Payble Amount</h3>
                         <ul className="overview-ul">
                             <li>₹ 100/- Per Person.</li>
-                            <li>Your Total Payble Amount : <b>₹{Booking.amount}/-</b></li>
+                            <li>Your Total Payble Amount : <b>₹{booking.amount}/-</b></li>
                         </ul>
                     </div>
-                    <input type="submit" onClick={handleBooking} value="Confirm" className="btn-yellow form-btn"/>
+                    <input type="submit" onClick={goToPayment} value="Confirm" className="btn-yellow form-btn"/>
                     <input type="submit" onClick={prevStep} value="Cancel" className="btn-yellow form-btn"/>
                 </div>
                 </div>
             </div>
         </section>
-        {step === "/conf-payment" ? <ConfPayment amount={Booking.amount} handlePayment={handlePayment}/> : ""}
         </>
     )
 }

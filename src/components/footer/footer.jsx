@@ -4,6 +4,7 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoIosRestaurant } from 'react-icons/io';
+import { MdShare } from 'react-icons/md';
 
 const Footer = () => {
 
@@ -44,8 +45,9 @@ const Footer = () => {
           <h4>Follow Us</h4>
           <div className="social-icons">
             <a href="https://facebook.com"><AiFillFacebook size="32px"/></a>
-            <a href="https://twitter.com"><FaInstagram size="32px"/></a>
-            <a href="https://instagram.com"><FaXTwitter size="32px"/></a>
+            <a href="https://twitter.com"><FaXTwitter size="32px"/></a>
+            <a href="https://instagram.com"><FaInstagram size="32px"/></a>
+            <a href={`https://wa.me/?text=${window.location}`}><MdShare size="32px"/></a>
           </div>
         </div>
         

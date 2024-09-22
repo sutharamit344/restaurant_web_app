@@ -137,7 +137,7 @@ export default function Loginform() {
                   placeholder='Username' id='signup-username'
                   autoComplete='name'/>
                   { formData.submitTouched && !username && <div className='error-msg'>Nick name is required.</div>}
-                  { formData.submitTouched && valid.isUsername && <div className='error-msg'>Nick name is invalid.</div>}
+                  { formData.submitTouched && valid.isUsername && <div className='error-msg'>Nick name length must be min 2 max 6.</div>}
             </div>
             <div className='form-control'>
               <label htmlFor="signup-email">Email</label>

@@ -13,18 +13,22 @@ let bookingDatabase = localStorage.getItem("bookings")
 bookingDatabase = bookingDatabase ? JSON.parse(bookingDatabase) : []
 const [bookings, setBookings] = useState(bookingDatabase)
 const [myBooking, setMyBookings] = useState([])
+const [bid, setBid] = useState(0)
 
 useEffect(() => {
   localStorage.setItem("bookings", JSON.stringify(bookings))
+  searchBooking()
+},[bookings, login, bid])
 
+const searchBooking = () => {
   setMyBookings(bookings.filter((booked, i) => {
-    return booked.userId === login.id
+    return !bid ? booked.userId === login.id : booked.objId === Number(bid)
 }))
-},[bookings, login])
+}
 
 
   return (
-    <BookingContext.Provider value={{bookingObj, bookings, setBookings, timeSlots, guest, complexField, myBooking}}>
+    <BookingContext.Provider value={{bookingObj, bookings, setBookings, timeSlots, guest, complexField, myBooking, setBid}}>
         {children}
     </BookingContext.Provider>
   )
