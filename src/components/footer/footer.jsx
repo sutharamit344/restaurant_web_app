@@ -15,18 +15,20 @@ const Footer = () => {
         
         <div className="footer-column f-col-1">
             <div id='footer-logo'>
-    <a href="/" className='logo'>
+    <div href="/" className='logo'>
+    <div>
     <IoIosRestaurant className='logo-img'/>
+    <a href={`https://wa.me/?text=${window.location}`}><MdShare size="32px"/></a>
       <h2 className='h3'>Restaurant</h2>
-    </a>
+      </div>
+    </div>
             </div>
           <p>Welcome to Restaurant! We specialize in authentic cuisine, served with love. Join us for delicious meals and special event celebrations.</p>
        </div>
 
-        <div className="footer-column">
+        <div className="footer-column f-col-2">
           <ul>
             <li><h4>Quick Links</h4></li>
-            <li><a href="#events">Home</a></li>
             <li><a href="#events">Cart</a></li>
             <li><a href="#contact">Bookings</a></li>
             <li><a href="#events">Events</a></li>
@@ -47,7 +49,6 @@ const Footer = () => {
             <a href="https://facebook.com"><AiFillFacebook size="32px"/></a>
             <a href="https://twitter.com"><FaXTwitter size="32px"/></a>
             <a href="https://instagram.com"><FaInstagram size="32px"/></a>
-            <a href={`https://wa.me/?text=${window.location}`}><MdShare size="32px"/></a>
           </div>
         </div>
         
@@ -56,6 +57,7 @@ const Footer = () => {
       {/* Footer Bottom Section */}
       <div className="footer-bottom">
         <p>&copy; 2024 Restaurant All rights reserved.</p> <p><a href="/terms">Terms & Conditions</a> / <a href="/privacy">Privacy Policy</a></p>
+        
       </div>
     </footer>
     </>
