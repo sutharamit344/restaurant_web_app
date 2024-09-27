@@ -3,10 +3,11 @@ import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import ReviewCard from '../reviewcard/reviewcard';
 import EventCards from '../eventcard/eventcard';
-import { FoodContext } from '../contextapis/foodprovider';
 import Card from '../food_card/card';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
+import { MenuContext } from '../contextapis/menuapi';
+import { MdDeliveryDining } from 'react-icons/md';
 const origin = window.location.origin;
 
 export const fastFoodItems = [
@@ -66,7 +67,7 @@ export const fastFoodItems = [
 export default function Home() {
 
 const [nextDish, setNextDish] = useState(0)
-const {trending} = useContext(FoodContext)
+const {trending} = useContext(MenuContext)
 const navigate = useNavigate()
 
 const nextDishHandler = () => {
@@ -87,6 +88,7 @@ const prevDishHandler = () => {
             <h2>Welcome to</h2>
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
             <p className='p'>Experience the taste of luxury with our exquisite dishes made from the freshest ingredients.</p>
+            <h2 style={{display: "flex", alignItems: "center", gap: "1rem"}}><MdDeliveryDining className='bg-yellow' style={{fontSize: "40px", borderRadius:"8px", padding: "4px"}}/> Delivery in 30 Min.</h2>
                 <h1><div>Order Over ₹299/-</div><div> Get 50% Off</div></h1>
                   <div className='ca-btn-g'>
                     <button className='btn-yellow' onClick={() => navigate("/food-order")} style={{marginRight:"1rem"}}>Order Foods</button>

@@ -1,22 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./card.css"
 import { BsCartDashFill, BsCartPlusFill } from 'react-icons/bs'
+import { CartContext } from '../contextapis/cartapi'
 
 
 export default function Card({itemList}) {
-
-  const origin = window.location.origin
-
+  const {items, handleSetItems, handleRemoveItem, complexField} = useContext(CartContext)
+  const location = window.location
+  
   return (
     <>
     {
       itemList.map((item, i) => {
+        const inCart = items.some(cartItem => cartItem.itemId === item.id)
         return (
     <div key={i} className={`card  bg-item`}>
     <div className='card-img'>
-      <img src={`${origin}/assets/foods/${item.image}`} alt={item.image} />
+      <img src={`${location.origin}/assets/foods/${item.image}`} alt={item.image} />
       <div className='img-shade'>
-        <h3>Get 25% Off</h3>
+        <h3>{item.offer}</h3>
       </div>
     </div>
     <div className='card-detail'>
@@ -26,8 +28,12 @@ export default function Card({itemList}) {
       </div>
       <div className='card-bottom'>
       <h3 className='card-price'>₹{item.price}/-</h3>
-      <button className='remove-btn hidden'><BsCartDashFill/> Remove</button>
-      <button className='add-btn'><BsCartPlusFill/> Add</button>
+      {
+        inCart ? <button className='remove-btn' onClick={() => handleRemoveItem(item.id)}>
+        <img src="/assets/img/food-cart.svg" className={`btn-icon svg`} alt="food cart" /> Remove</button>
+        : <button className='add-btn' onClick={() => handleSetItems(item.id)}>
+        <img src="/assets/img/food-cart.svg" className={`btn-icon svg`} alt="food cart" /> Add</button>
+      }
       </div>
     </div>
   </div>

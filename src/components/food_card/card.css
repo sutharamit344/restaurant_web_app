@@ -88,3 +88,12 @@
     outline: 1px solid #ff1b1b;
     color: white;
 }
+.btn-icon{
+    width: 15px;
+}
+.remove-btn .btn-icon{
+    filter: invert(1);
+}
+.add-btn .btn-icon{
+    filter: invert(0);
+}

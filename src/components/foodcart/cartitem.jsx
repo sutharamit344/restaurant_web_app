@@ -1,36 +1,38 @@
 import React from "react"
+import { BiSolidOffer } from "react-icons/bi"
 
-export default function CartOtem() {
+const location = window.location
+
+export default function CartItem({offerPrice, itemDetail, qty, handleItem}) {
+
     return (
         <>
-        <div className={`cart-items bg-item`}>
                     <div className="cart-item">
                         <div className="cart-item-img">
-                            <img src="http://localhost:3000/assets/foods/veggie-burger.png" alt="" />
+                            <img src={`${location.origin}/assets/foods/${itemDetail.image}`} alt={itemDetail.name} />
                         </div>
                         <div className="cart-item-detail">
                             <div className="cart-item-name">
-                                <h3>Item Name</h3>
+                                <h3>{itemDetail.name}</h3>
                             </div>
                             <div className="cart-item-offer">
-                                25% discount
+                            ₹{itemDetail.price} <BiSolidOffer/> {itemDetail.offer} 
                             </div>
                         </div>
                         <div className="cart-item-qty-btn">
-                            <button className="cart-item-dec">-</button>
-                            <div className="output">0</div>
-                            <button className="cart-item-inc">+</button>
+                            <button className="cart-item-dec" onClick={() => handleItem.handleRemoveItem(itemDetail.id)}>-</button>
+                            <div className="output">{qty}</div>
+                            <button className="cart-item-inc" onClick={() => handleItem.handleSetItems(itemDetail.id)}>+</button>
                         </div>
                         <div className="cart-item-price">
-                            <div className="cart-item-actual-price">
-                                <del>00000</del>
+                            <div>
+                        <del>₹{itemDetail.price*qty}</del>
                             </div>
                             <div className="cart-item-offer-price">
-                                <b>0000</b>
+                                <b>₹{offerPrice}</b>
                             </div>
                         </div>
                     </div>
-                </div>
         </>
     )
 }

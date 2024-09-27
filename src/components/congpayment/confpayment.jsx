@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./confpayment.css"
 import { useNavigate, useParams } from 'react-router-dom';
 import { isInt } from 'validator';
+import { AuthUserContext } from '../contextapis/authuserapi';
 const location = window.location;
 
 function Success(props) {
@@ -14,7 +15,7 @@ function Success(props) {
       <h2>Amount Of ₹{props.amount}/- Paid</h2>
       <h2>Successful!</h2>
       <h2>{props.type} Id: {props.bookingId}</h2>
-      <button className='btn-yellow' onClick={() => location.reload()}>Continue</button>
+      <button className='btn-yellow' onClick={() => navigate("/"+props.redirect)}>Continue</button>
     </div>
   )
 }
@@ -37,24 +38,39 @@ function Failed(props) {
 }
 
 
-export default function ConfPayment({}) {
+export default function ConfPayment() {
   const navigate = useNavigate()
+  const {login, setLogin} = useContext(AuthUserContext)
   const {id, dataname, type, redirect} = useParams()
 
-  useEffect(() => {
-    const input = document.getElementsByName("userOtp")[0]
-    input && input.focus()
-    if(!id || !isInt(id)){
-    navigate(-1)
-    }
-
-  })
 
   useEffect(() => {
-    const fetch = JSON.parse(localStorage.getItem(dataname)).map((booking, i) => {
-      return booking.objId === Number(id) && booking.paymentStatus && navigate("/"+redirect)
-    })
-  },[])
+    const input = document.getElementsByName("userOtp")[0];
+    if (input) input.focus();
+
+      if (id && isInt(id)) {
+        const storedData = localStorage.getItem(dataname);
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            if (Array.isArray(parsedData)) {
+              const find = parsedData.some((order) => {
+                return order.objId === Number(id) && !order.paymentStatus;
+              });
+              if(!find){
+                navigate(-1)
+              }
+            }
+        } else {
+          navigate(-1)
+        }
+      }else{
+        navigate(-1)
+      }
+  }, [dataname, id]);
+
+
+  
+
   const randomOtp = Math.floor(Math.random()*(9999-999)+999);
   const [otp, setOtp] = useState({
       digit: randomOtp,
@@ -83,8 +99,8 @@ export default function ConfPayment({}) {
 
   const success = () => {
     if(otp.status){
-      const fetch = JSON.parse(localStorage.getItem(dataname)).map((booking, i) => {
-        return booking.objId === Number(id) ? {...booking, paymentStatus: true} : booking
+      const fetch = JSON.parse(localStorage.getItem(dataname)).map((order) => {
+        return order.objId === Number(id) ? {...order, paymentStatus: true} : order
       })
       localStorage.setItem(dataname, JSON.stringify(fetch))
     }
@@ -94,10 +110,11 @@ export default function ConfPayment({}) {
     e.preventDefault()
     if(otp.userInput){
       if(parseInt(otp.userInput) === otp.digit){
+        success()
           setOtp((prev) => {
-            success()
             return {...prev, status: "success", success: true}
           })
+          setLogin({...login, refresh: true})
       }else{
         setOtp((prev) => {
           return {...prev, status: "incorrect"}
@@ -139,7 +156,7 @@ export default function ConfPayment({}) {
         {!otp.status && !otp.userInput && <div className='error-msg'>OTP is required.</div>}
         {otp.status === "incorrect" && otp.userInput && <div className='error-msg'>Enter valid OTP..</div>}
         <div><button type='submit' className='btn-yellow'>Confirm</button>
-        <button className='btn-red' onClick={() => navigate(-1)}>Go back</button></div>
+        <button className='btn-red' onClick={() => navigate("/"+redirect)}>Go back</button></div>
       </form>
       }
     </div>

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import Card from '../food_card/card'
-import { FoodContext } from '../contextapis/foodprovider'
 import Footer from '../footer/footer'
+import { MenuContext } from '../contextapis/menuapi'
 
 export default function Foods() {
 
-  const {menu} = useContext(FoodContext)
-
+  const {menu} = useContext(MenuContext)
+  
   return (
     <>
     <section id='menu' className='grid'>

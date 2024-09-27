@@ -16,7 +16,8 @@ export default function AuthUserProvider({children}) {
         id: "",
         email: "",
         username: "",
-        status: false
+        status: false,
+        refresh: false
     }
     
     let logedUser = localStorage.getItem("logedUser")
@@ -26,6 +27,11 @@ export default function AuthUserProvider({children}) {
 
     useEffect(() => {
         localStorage.setItem("logedUser", JSON.stringify(login))
+        setTimeout(() => {
+        if(login.refresh){
+            setLogin({...login, refresh: false})
+        }
+        }, 1000)
     },[login])
 
     const handleUserAuth = (formData) => {
@@ -55,6 +61,7 @@ export default function AuthUserProvider({children}) {
                 pass: formData.pass
             }])
             alertMsg = { type: "green", msg: "Account created successfully. email: "+formData.email}
+
         }}
 
         if(formData.formType === "login"){
@@ -68,7 +75,8 @@ export default function AuthUserProvider({children}) {
                         id: find[0].id,
                         username: find[0].username,
                         email: find[0].email,
-                        status: true
+                        status: true,
+                        refresh: false
                     })
                     alertMsg = { type: "green", msg: "You are loged in successfully."}
                 }else{
@@ -90,11 +98,10 @@ export default function AuthUserProvider({children}) {
         if(login.status) {
             setLogin(loginObj)
         }
-        console.log(user)
     }
 
   return (
-    <AuthUserContext.Provider value={{login, handleUserAuth, handleLogout}}>
+    <AuthUserContext.Provider value={{login, setLogin, handleUserAuth, handleLogout}}>
         {children}
     </AuthUserContext.Provider>
   )

@@ -12,8 +12,8 @@ export default function Table() {
     const path = useLocation()
     const step = path.pathname;
     const navigate = useNavigate()
-    const {login} = useContext(AuthUserContext)
-    const {bookingObj, bookings, setBookings, timeSlots, guest, complexField} = useContext(BookingContext)
+    const {login, setLogin} = useContext(AuthUserContext)
+    const {bookingObj, bookings, timeSlots, guest, complexField} = useContext(BookingContext)
 
     const [booking, setBooking] = useState(bookingObj)
 
@@ -61,7 +61,7 @@ export default function Table() {
         }
         
         setField((prev) => {
-            return {...prev, bookingSubmited: false}
+            return {...prev, submited: false}
         })
       };
 
@@ -89,7 +89,7 @@ export default function Table() {
     const handleBooking = (e) => {
         e.preventDefault()
         setField((prev) => {
-            return {...prev, bookingSubmited: true}
+            return {...prev, submited: true}
         })
         if(valid.isBooking){
             if(location.pathname === "/booking"){
@@ -129,23 +129,24 @@ export default function Table() {
 
     const goToPayment = () => {
         if (confData) {
-          const objId = bookings.length + 1;
+          const objId = bookings.current.length + 1;
           const newBooking = { ...booking, objId: objId };
-          setBookings([...bookings, newBooking]);
+          localStorage.setItem("bookings", JSON.stringify([...bookings.current, newBooking]));
           navigate(`/conf-payment/${objId}/bookings/Booking/booked`)
+          setLogin({...login, refresh: true})
         }
-      };
+    };
       
 
     const handleInputChange = (e) => {
         let {name, value} = e.target;
         setBooking({...booking, [name]: value})
-      }
-      const handleComplexInput = (e) => {
+    }
+
+    const handleComplexInput = (e) => {
         let {name, value} = e.target;
         setField({...field, [name]: value})
-
-      }
+    }
 
       useEffect(() => {
         if(confAll){
@@ -159,7 +160,7 @@ export default function Table() {
         document.getElementsByName("date")[0].focus()
         document.getElementsByName("fname")[0].focus()
         document.getElementsByName("cardType")[0].focus()
-      },[location.pathname])
+      },[path])
 
     return (
         <>
@@ -170,9 +171,12 @@ export default function Table() {
                     <h2 className="h2 col-2">Table booking</h2>
                     <div className="form-control">
                         <label htmlFor="bookingDate">Date</label>
+                        <div className="input-group">
                         <input type="date" name="date" id="bookingDate"
                         value={booking.date} onChange={handleInputChange}/>
-                        {field.bookingSubmited && !valid.isDate && <div className="error-msg">Date is required.</div>}
+                        <span className="d-icon-650"><IoCalendar/></span>
+                        </div>
+                        {field.submited && !valid.isDate && <div className="error-msg">Date is required.</div>}
                     </div>
                     <div className="form-control">
                     <label htmlFor="timeSlots">Time Slots</label>
@@ -190,7 +194,7 @@ export default function Table() {
                         </select>
                         <span className="input-icon"><IoTimer/></span>
                         </div>
-                        {field.bookingSubmited && !valid.isTime && <div className="error-msg">Time is required.</div>}
+                        {field.submited && !valid.isTime && <div className="error-msg">Time is required.</div>}
                     </div>
                     <div className="form-control">
                         <label htmlFor="nOuest">Number Of Guest</label>
@@ -208,7 +212,7 @@ export default function Table() {
                         </select>
                         <span className="input-icon"><IoPeople/></span>
                         </div>
-                        {field.bookingSubmited && !valid.isGuest && <div className="error-msg">Guest is required.</div>}
+                        {field.submited && !valid.isGuest && <div className="error-msg">Guest is required.</div>}
                     </div>
                     <div className="form-control">
                     <label htmlFor="occation">Occation</label>
@@ -221,13 +225,13 @@ export default function Table() {
                         </datalist>
                         <span className="input-icon"><IoSparkles/></span>
                         </div>
-                        {field.bookingSubmited && !valid.isOccation && <div className="error-msg">Date is required.</div>}
+                        {field.submited && !valid.isOccation && <div className="error-msg">Date is required.</div>}
                     </div>
                     <input type="submit" onClick={handleBooking} value="Continue" className="btn-yellow form-btn"/>
                 </form>
                 </div>
                 <div className={`form-box ${step === "/booking-payment" ? "" : "hidden"}`}>
-                <Payment nextPath={nextStep} prevPath={prevStep} formData={field} handleCard={handleBooking} handleInputChange={handleComplexInput}/>
+                <Payment nextPath={nextStep} prevPath={prevStep} formData={field} handleCard={handleBooking} handleComplexInput={handleComplexInput}/>
                 </div>
 
                 <div className='image' style={{backgroundImage: `url("${location.origin}/assets/img/rimg2.png")`}}></div>
@@ -239,7 +243,7 @@ export default function Table() {
                         <label htmlFor="firstName">First Name <sup>*</sup></label>
                         <input type="text" name="fname" id="firstName" placeholder="First Name"
                         value={field.fname} onChange={handleComplexInput} />
-                        {field.bookingSubmited && !valid.isFname && <div className="error-msg">First name is required.</div>}
+                        {field.submited && !valid.isFname && <div className="error-msg">First name is required.</div>}
                     </div>
                     <div className="form-control">
                         <label htmlFor="lastName">Last Name</label>
@@ -250,12 +254,13 @@ export default function Table() {
                         <label htmlFor="mobile">Mobile No. <sup>*</sup></label>
                         <input type="mobile" name="mobile" id="mobile" placeholder="+91"
                         value={booking.mobile} onChange={handleInputChange} />
-                        {field.bookingSubmited && !valid.isMobile && <div className="error-msg">Mobile number is required.</div>}
+                        {field.submited && !valid.isMobile && <div className="error-msg">Mobile number is required.</div>}
                     </div>
                     <div className="form-control">
                         <label htmlFor="billEmail">Email</label>
                         <input type="email" name="email" id="billEmail" placeholder="Your email"
-                        value={booking.email} onChange={handleInputChange} />
+                        value={booking.email} onChange={handleInputChange}
+                        autoComplete="email" />
                     </div>
                     <div className="form-control col-2">
                         <label htmlFor="message">Special message</label>

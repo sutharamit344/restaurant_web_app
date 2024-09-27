@@ -29,6 +29,7 @@
     justify-content: center;
     gap: 8px;
   }
+  #footer-logo .h3,
   #footer-logo a{
     text-decoration: none;
     color: white;

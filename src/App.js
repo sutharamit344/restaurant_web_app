@@ -10,6 +10,8 @@ import { UseDarkMode } from "./components/darkmode/darkmode";
 import Booked from "./components/booked/booked";
 import Loader from "./components/loader/loader";
 import ConfPayment from "./components/congpayment/confpayment";
+import Orders from "./components/orders/orders";
+import Clear from "./clear";
 
 function App() {
 
@@ -41,9 +43,12 @@ function App() {
       <Route path="/signup" element={<Loginform activeForm={false}/>} ></Route>
       <Route path="/conf-payment/:id/:dataname/:type/:redirect" element={<ConfPayment/>}></Route>
       <Route path="/food-order" element={<Foods/>} />
+      <Route path="/orders" element={<Orders/>} />
       <Route path="/checkout" element={<Checkout/>} />
       <Route path="/delivery-address" element={<Checkout/>} />
       <Route path="/delivery-payment" element={<Checkout/>} />
+      <Route path="/delivery-overview" element={<Checkout/>} />
+      <Route path="/clearstorage" element={<Clear/>} />
     </Routes>
     </BrowserRouter>
     </div>

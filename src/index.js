@@ -3,27 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { FoodProvider } from './components/contextapis/foodprovider';
 import { DarkModeProvider } from "./components/darkmode/darkmode";
 import AuthUserProvider from './components/contextapis/authuserapi';
 import AlertApiProvider from './components/contextapis/alertapi';
 import BookingProvider from './components/contextapis/bookingapi';
+import CartProvider from './components/contextapis/cartapi';
+import { MenuProvider } from './components/contextapis/menuapi';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <AlertApiProvider>
-    <AuthUserProvider>
-    <BookingProvider>
-  <FoodProvider>
+  <>
+  <AlertApiProvider>
+  <AuthUserProvider>
+  <BookingProvider>
+  <MenuProvider>
+  <CartProvider>
   <DarkModeProvider>
     <App />
   </DarkModeProvider>
-  </FoodProvider>
+  </CartProvider>
+  </MenuProvider>
   </BookingProvider>
   </AuthUserProvider>
   </AlertApiProvider>
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

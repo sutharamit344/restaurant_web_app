@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Booked() {
     const navigate = useNavigate()
-    const {myBooking, setBid} = useContext(BookingContext)
+    const {myBooking, setBid, bid} = useContext(BookingContext)
 
     const goToPayment = (objId) => {
         navigate(`/conf-payment/${objId}/bookings/Booking/booked`)
@@ -22,7 +22,7 @@ export default function Booked() {
             <h1 className='h3'>Your Bookings</h1>
             <span>
                 <div className='input-group'>
-                <input type="number" name='searchBooking' onChange={e => setBid(e.target.value)} placeholder='Search Booking...'/>
+                <input type="number" name='searchBooking' value={bid} onChange={(e) => setBid(e.target.value)} placeholder='Search Booking...'/>
                 <span className='input-icon'><IoSearch/></span>
                 </div>
             </span>

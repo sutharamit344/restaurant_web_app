@@ -134,7 +134,7 @@ export default function Loginform() {
                   style={{outlineColor: valid.isUsername ? "red" : ""}} 
                   value={username} onChange={handleInputChange} 
                   onBlur={() => setFormData(username ? {...formData, usernameTouched: true} : {...formData, usernameTouched: false})}
-                  placeholder='Username' id='signup-username'
+                  placeholder='Nick Name' id='signup-username'
                   autoComplete='name'/>
                   { formData.submitTouched && !username && <div className='error-msg'>Nick name is required.</div>}
                   { formData.submitTouched && valid.isUsername && <div className='error-msg'>Nick name length must be min 2 max 6.</div>}

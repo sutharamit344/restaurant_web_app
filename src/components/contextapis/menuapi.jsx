@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 
-export const FoodContext = createContext();
+export const MenuContext = createContext();
 
-export const FoodProvider = ({ children }) => {
+export const MenuProvider = ({ children }) => {
     const [menu, setMenu] = useState([]);
     const [trending, setTrending] = useState([]);
 
@@ -24,7 +24,7 @@ export const FoodProvider = ({ children }) => {
             while(item.length < 4){
                 const rndc = Math.floor(Math.random() * menu.length)
                 const rndi = Math.floor(Math.random() * menu[rndc].items.length)
-                const food = menu[rndc].items[rndi];
+                let food = menu[rndc].items[rndi];
                 if(!item.some(existing => existing.id === food.id)){
                     item.push(food);
                 }
@@ -35,8 +35,8 @@ export const FoodProvider = ({ children }) => {
 
 
     return (
-        <FoodContext.Provider value={{ menu, trending}}>
+        <MenuContext.Provider value={{ menu, trending}}>
             {children}
-        </FoodContext.Provider>
+        </MenuContext.Provider>
     );
 };
