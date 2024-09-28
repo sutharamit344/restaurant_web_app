@@ -9,25 +9,70 @@ export default function CartProvider({children}) {
     const {login, setLogin} = useContext(AuthUserContext)
     const {menu} = useContext(MenuContext)
     const complexField = {  cardType: "Credit Card",  cardHolder: "",  fname: "",  lname: "",  exMonth: "",  exYear: "",  cvv: "",  cardNum1: "",  cardNum2: "",  cardNum3: "",  cardNum4: "",  paymentStatus: false,  bookingSubmited: false}
-    const ordersObj = {userId: "",name: "", mobile: "", email: "", address: "", message: "", cardType: "Credit Card" ,cardHolder: "" ,exDate: "", cvv: "" ,cardNum: ""}
+    const ordersObj = {userId: "",name: "", mobile: "", email: "", address: "", message: "", cardType: "Credit Card" ,cardHolder: "" ,exDate: "", cvv: "" ,cardNum: "", orderStatus: true}
     const loginId = login.id
     const cartItems = useRef(null)
     const myCart = useRef(null)
     const ordersdata = useRef(null)
     const myOrder = useRef(null)
+    const [bid, setBid] = useState("")
     
-    ordersdata.current = localStorage.getItem("orders")
-    ordersdata.current = ordersdata.current ? JSON.parse(ordersdata.current) : []
-    myOrder.current = ordersdata.current.filter((order) => {
-        return order.userId === login.id
-    })
-    const [orders, setOrders] = useState(myOrder.current)
+    const getCarts = () => {
+        cartItems.current = localStorage.getItem("cartItem")
+        cartItems.current = cartItems.current ? JSON.parse(cartItems.current) : {}
+        return cartItems.current
+    }
 
-    cartItems.current = localStorage.getItem("cartItem")
-    cartItems.current = cartItems.current ? JSON.parse(cartItems.current) : {}
-    myCart.current = cartItems.current["cart"+loginId] ? cartItems.current["cart"+loginId] : []
-    const [items, setItems] = useState(myCart.current)
+    const getCartItems = () => {
+        myCart.current = getCarts["cart"+loginId] ? getCarts["cart"+loginId] : []
+        return myCart.current
+    }
+
+    const getOrders = () => {
+        ordersdata.current = localStorage.getItem("orders")
+        ordersdata.current =  ordersdata.current ? JSON.parse(ordersdata.current) : []
+        return ordersdata.current
+    }
+
+    const getMyOrders = () => {
+        const orders = getOrders()
+        myOrder.current = orders.filter((order) => {
+            return !bid ? order.userId === login.id : order.objId === Number(bid)
+        })
+        return myOrder.current
+    }
+
+    const [orders, setOrders] = useState(getMyOrders)
+
+    const [items, setItems] = useState(getCartItems)
+
     const [subTotal, setSubTotal] = useState(0)
+
+    useEffect(() => {
+        localStorage.setItem("cartItem", JSON.stringify({...cartItems.current, ["cart"+loginId]: items}))
+    },[items, orders])
+
+    useEffect(() => {
+        setItems(getCartItems)
+        setOrders(getMyOrders)
+    },[login.id, login.refresh, bid])
+    
+    const handleSetOrder = (newOrder) => {
+        getOrders()
+        localStorage.setItem("orders", JSON.stringify([...ordersdata.current, {...newOrder, cart: items, orderTime: String(new Date()), payTime: ""}]))
+        setItems([])
+        setLogin({...login, refresh: true})
+    }
+
+    const cancelOrder = (objId) => {
+        const orders = getOrders()
+        localStorage.setItem("orders", JSON.stringify(
+        orders.map((order) => {
+            return order.objId === objId ? {...order, orderStatus: false} : order
+        })
+    ))
+        setLogin({...login, refresh: true})
+    }
 
     
     useEffect(() => {
@@ -45,10 +90,6 @@ export default function CartProvider({children}) {
         }
     },[login, items, menu])
 
-    
-    const [bid, setBid] = useState("")
-
-
     const handleSetItems = (itemId) => {
         const find = items.some(item => item.itemId === itemId)
         find ? 
@@ -64,6 +105,7 @@ export default function CartProvider({children}) {
             qty: 1
         }])
     }
+    
     const handleRemoveItem = (itemId) => {
         const find = items.some(item => item.itemId === itemId && item.qty > 1)
         if(find){
@@ -83,37 +125,14 @@ export default function CartProvider({children}) {
                 )
             )
         }
+
         setTimeout(() => {
         setItems((prev) => prev.filter(item => item.qty !== 0))
         }, 100);
     }
 
-    useEffect(() => {
-        localStorage.setItem("cartItem", JSON.stringify({...cartItems.current, ["cart"+loginId]: items}))
-    },[items, orders])
-
-    useEffect(() => {
-        cartItems.current = localStorage.getItem("cartItem")
-        cartItems.current = cartItems.current ? JSON.parse(cartItems.current) : {}
-        myCart.current = cartItems.current["cart"+loginId] ? cartItems.current["cart"+loginId] : []
-        setItems(myCart.current)
-        ordersdata.current = localStorage.getItem("orders")
-        ordersdata.current = ordersdata.current ? JSON.parse(ordersdata.current) : []
-        myOrder.current = ordersdata.current.filter((order) => {
-            return !bid ? order.userId === login.id : order.objId === Number(bid)
-        })
-        setOrders(myOrder.current)
-    },[login.id, login.refresh, bid])
-
-    
-    const handleSetOrder = (newOrder) => {
-        localStorage.setItem("orders", JSON.stringify([...ordersdata.current, {...newOrder, cart: items}]))
-        setItems([])
-        setLogin({...login, refresh: true})
-    }
-
   return (
-    <CartContext.Provider value={{bid, setBid, ordersObj, ordersdata, orders, subTotal, handleSetOrder, items, handleSetItems, handleRemoveItem, complexField}}>
+    <CartContext.Provider value={{cancelOrder, bid, setBid, ordersObj, ordersdata, orders, subTotal, handleSetOrder, items, handleSetItems, handleRemoveItem, complexField}}>
         {children}
     </CartContext.Provider>
   )

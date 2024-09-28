@@ -1,0 +1,119 @@
+
+#order .cart-items{
+    grid-column: 1/3;
+    border-bottom: 1px solid gray;
+    transition: 0.2;
+    position: absolute;
+    top: 2rem;
+    z-index: 999;
+  }
+  #order .cart-item{
+    padding: 8px 0px;
+  }
+  .open-items{
+    font-size: 20px;
+    position: absolute;
+    inset: 0;
+    left: auto;
+    overflow: auto;
+  }
+  .h-0{
+    height: 0px;
+  }
+  .h-auto{
+    height: auto;
+  }
+  .order-status{
+    grid-column: 1/3;
+    transition: 0.2;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+  }
+  .progress-bar{
+    width: 100%;
+    border-bottom: 2px dotted gray;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .delivery-route{
+    flex: 1;
+    position: relative;
+  }
+  .progress-bar > span{
+    background-color: white;
+    padding: 4px 4px 0 4px;
+    border-radius: 4px 4px 0 0;
+  }
+  .bike{
+    color: #ffc61b;
+    position: absolute;
+    font-size: 22px;
+    transition: 0.5s;
+  }
+  .d-status-true{
+    color: #00cc00;
+    position: relative;
+    z-index: 9;
+  }
+  .d-status-false{
+    color: #e61b1b;
+  }
+  #order-Cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 1rem 0 0 0;
+}
+.order-card{
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px #1f1f1f;
+    padding-bottom: 2rem;
+    overflow: auto;
+}
+.order-card .item-g {
+    padding: 4px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    align-items: center;
+    position: relative;
+}
+.b-item{
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    font-size: 13px;
+}
+.b-times{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.cancel-btn{
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #ff2525fd;
+    color: white;
+}
+.pay-btn{
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #00b436fd;
+    color: white;
+}
+
+@media (max-width: 800px) {
+    #order-Cards{
+        grid-template-columns: 1fr;
+    }
+}

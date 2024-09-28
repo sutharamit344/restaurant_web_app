@@ -1,21 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../contextapis/cartapi'
 import { useNavigate } from 'react-router-dom'
-import { IoCall, IoCardOutline, IoLocation, IoPerson, IoSearch } from 'react-icons/io5'
+import { IoCall, IoCardOutline, IoHome, IoLocation, IoPerson, IoSearch } from 'react-icons/io5'
 import { BiRupee, BiSolidOffer } from 'react-icons/bi'
-import { MdArrowDropDown, MdMail, MdMessage, MdPaid } from 'react-icons/md'
+import { MdArrowDropDown, MdDeliveryDining, MdMail, MdMessage, MdPaid } from 'react-icons/md'
 import { MenuContext } from '../contextapis/menuapi'
+import { GiCampCookingPot } from 'react-icons/gi'
+import "./orders.css"
+import { isNumeric } from 'validator'
 const location = window.location
 
 export default function Orders() {
-    const navigate = useNavigate()
     const {orders, bid, setBid} = useContext(CartContext)
     const {menu} = useContext(MenuContext)
     const [openItem, setOpenItem] = useState(null)
     
-    const goToPayment = (objId) => {
-        navigate(`/conf-payment/${objId}/orders/Order/orders`)
-    }
     return (
         <>
         <section id='order' className='grid'>
@@ -24,21 +23,21 @@ export default function Orders() {
                 <h1 className='h3'>Your Orders</h1>
                 <span>
                     <div className='input-group'>
-                    <input type="number" name='searchBooking' value={bid} onChange={e => setBid(e.target.value)} placeholder='Search Booking...'/>
+                    <input type="number" name='searchorder' value={bid} onChange={e => setBid(e.target.value)} placeholder='Search order...'/>
                     <span className='input-icon'><IoSearch/></span>
                     </div>
                 </span>
                 </div>
-                <div id='booking-Cards'>
+                <div id='order-Cards'>
                 {
                     orders.length && orders.map((order, i) => {
                         return (
-                            <div key={i} className='booking-card bg-item'>
+                            <div key={i} className='order-card bg-item'>
                                     <div className='item-g'>
                                     <div className='b-item'><span><img src="/assets/img/food-cart.svg" className={`btn-icon svg`} alt="food cart" /></span> {order.cart && order.cart.length} Items</div>
                                     
-                                    <MdArrowDropDown className='open-items' onClick={() => setOpenItem(openItem ? null : i)}/>
-                                    <div className={`cart-items bg-item ${openItem && i === openItem ? "h-auto" : "h-0"}`}>
+                                    <MdArrowDropDown className='open-items' onClick={() => setOpenItem( openItem === i+1 ? null : i+1)}/>
+                                    <div className={`cart-items bg-item ${i+1 === openItem ? "h-auto" : "h-0"}`}>
                                         {
                                             menu.map((cate, ci) => {
                                                 const find = order.cart && order.cart.some((item) => {
@@ -102,20 +101,89 @@ export default function Orders() {
                                     <div className='b-item'><span><IoLocation/></span> {order.address}</div>
                                     {order.message && <div className='b-item'><span><MdMessage/></span> {order.message}</div>}
                                     </div>
-                                    <div className='item-g'>
-                                    <div className='b-item'><span><IoCardOutline/></span> {order.cardType}</div>
-                                    <div className='b-item'><span><BiRupee/></span>{order.amount}/- </div>
-                                    <div className='b-item'><span>Order Id :</span>{order.objId}</div>
-                                    <div className='b-item'>{order.paymentStatus ? <span><MdPaid/> Paid</span> : <button className='pay-btn'  onClick={() => goToPayment(order.objId)}>Pay</button>}</div>
+                                    <DeliveryBike order={order}/>                                    
                                     </div>
-                        </div>
-                        )
-                    }).reverse()
-                }
+                                    )
+                                }).reverse()
+                            }
                         </div>
                         
             </div>
         </section>
         </>
       )
+}
+
+
+const DeliveryBike = ({order}) => {
+    const navigate = useNavigate()
+    const {cancelOrder} = useContext(CartContext)
+
+    const getTimeDeff = () => {
+        const timeDifferenceInSeconds = (new Date() - new Date(order.payTime)) / 1000;
+        const newLeftPosition = Math.floor(timeDifferenceInSeconds / (600 / 100));
+        return newLeftPosition
+    }
+
+    const [bikeLeft, setBikeLeft] = useState()
+
+    useEffect(() => {
+    setBikeLeft(getTimeDeff);
+    },[])
+
+    const goToPayment = (objId) => {
+        navigate(`/conf-payment/${objId}/orders/Order/orders`)
+    }
+    useEffect(() => {
+        if(bikeLeft < 101 && order.paymentStatus && order.orderStatus){
+        if (order.payTime) {
+            const interval = setInterval(() => {
+                setBikeLeft(getTimeDeff);
+            }, 500);
+
+            return () => clearInterval(interval);
+        }}
+    }, [order.payTime]);
+
+    return (
+        <>
+        <div className='item-g'>
+        <div className='b-item'><span><IoCardOutline/></span> {order.cardType}</div>
+        <div className='b-item'><span><BiRupee/></span>{order.amount}/- </div>
+        <div className='b-item'><span>Order Id :</span>{order.objId}</div>
+        <div className='b-item'>
+        {
+        order.paymentStatus ? 
+        order.orderStatus ?
+        <>
+        <span><MdPaid/> Paid</span> 
+        {order.paymentStatus && bikeLeft < 50 && <button className='cancel-btn'  onClick={() => cancelOrder(order.objId)}>Cancel order</button>}
+        </>: <span className='highlight'>Order Canceled.</span>
+        : <>
+        <button className='pay-btn'  onClick={() => goToPayment(order.objId)}>Pay</button>
+        </>}
+        </div>
+        </div>
+        <div className='item-g '>
+        <div className='b-item order-status'>
+            <div className='b-times'>
+                {order.payTime ? 
+                <span>Conf: {String(new Date(order.payTime).toLocaleString())}</span>
+                : <span className='highlight'>Order Confirm after payment</span>}
+                {
+                order.orderStatus && bikeLeft > 99 &&  `Delivered: ${new Date(new Date(order.payTime).getTime() + (1000 * 60 * 10)).toLocaleTimeString()}`
+                }
+            </div>
+            <div className='progress-bar'>
+            <span className={`${order.orderStatus && bikeLeft > 0 ? "d-status-true" : "d-status-false"}`}><GiCampCookingPot/></span>
+            <div className='delivery-route'>
+            <span className='bike'  style={{ left: bikeLeft + "%" }} ><MdDeliveryDining/></span>
+            </div>
+            <span className={`${order.orderStatus && bikeLeft > 99 ? "d-status-true" : "d-status-false"}`}><IoHome/></span>
+            </div>
+        </div>
+        </div>
+        
+        </>
+    )
 }

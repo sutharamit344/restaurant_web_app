@@ -131,7 +131,7 @@ export default function Table() {
         if (confData) {
           const objId = bookings.current.length + 1;
           const newBooking = { ...booking, objId: objId };
-          localStorage.setItem("bookings", JSON.stringify([...bookings.current, newBooking]));
+          localStorage.setItem("bookings", JSON.stringify([...bookings.current, {...newBooking,  bookingTime: String(new Date()), payTime: "", bookingStatus: true}]));
           navigate(`/conf-payment/${objId}/bookings/Booking/booked`)
           setLogin({...login, refresh: true})
         }
@@ -177,7 +177,7 @@ export default function Table() {
                         <span className="d-icon-650"><IoCalendar/></span>
                         </div>
                         {field.submited && !valid.isDate && <div className="error-msg">Date is required.</div>}
-                    </div>
+                     </div>
                     <div className="form-control">
                     <label htmlFor="timeSlots">Time Slots</label>
                         <div className="input-group">

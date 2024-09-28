@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Booked() {
     const navigate = useNavigate()
-    const {myBooking, setBid, bid} = useContext(BookingContext)
+    const {myBooking, setBid, bid, cancelbooking} = useContext(BookingContext)
 
     const goToPayment = (objId) => {
         navigate(`/conf-payment/${objId}/bookings/Booking/booked`)
@@ -48,7 +48,18 @@ export default function Booked() {
                                 <div className='b-item'><span><IoCardOutline/></span> {booked.cardType}</div>
                                 <div className='b-item'><span><BiRupee/></span>{booked.amount}/- </div>
                                 <div className='b-item'><span>Booking Id :</span>{booked.objId}</div>
-                                <div className='b-item'>{booked.paymentStatus ? <span><MdPaid/> Paid</span> : <button className='pay-btn'  onClick={() => goToPayment(booked.objId)}>Pay</button>}</div>
+                                    <div className='b-item'>
+                                    {
+                                    booked.paymentStatus ? 
+                                    booked.bookingStatus ?
+                                    <>
+                                    <span><MdPaid/> Paid</span> 
+                                    {booked.paymentStatus && <button className='cancel-btn'  onClick={() => cancelbooking(booked.objId)}>Cancel booking.</button>}
+                                    </>: <span className='highlight'>Booking Canceled.</span>
+                                    : <>
+                                    <button className='pay-btn'  onClick={() => goToPayment(booked.objId)}>Pay</button>
+                                    </>}
+                                    </div>
                                 </div>
                     </div>
                     )

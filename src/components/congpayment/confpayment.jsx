@@ -15,7 +15,7 @@ function Success(props) {
       <h2>Amount Of ₹{props.amount}/- Paid</h2>
       <h2>Successful!</h2>
       <h2>{props.type} Id: {props.bookingId}</h2>
-      <button className='btn-yellow' onClick={() => navigate("/"+props.redirect)}>Continue</button>
+      <button className='btn-yellow' onClick={() => navigate(`/${props.redirect}`)}>Continue</button>
     </div>
   )
 }
@@ -31,7 +31,7 @@ function Failed(props) {
       <h2>{props.type} Id: {props.bookingId}</h2>
       <div>
         <div><button className='btn-yellow' onClick={props.retry} >Retry</button>
-        <button className='btn-red' onClick={() => navigate("/booked")}>Cancel</button></div>
+        <button className='btn-red' onClick={() => navigate(`/${props.redirect}`)}>Cancel</button></div>
       </div>
     </div>
   )
@@ -100,7 +100,7 @@ export default function ConfPayment() {
   const success = () => {
     if(otp.status){
       const fetch = JSON.parse(localStorage.getItem(dataname)).map((order) => {
-        return order.objId === Number(id) ? {...order, paymentStatus: true} : order
+        return order.objId === Number(id) ? {...order, paymentStatus: true, payTime: new Date()} : order
       })
       localStorage.setItem(dataname, JSON.stringify(fetch))
     }
@@ -141,7 +141,7 @@ export default function ConfPayment() {
   return (
     <div id='confPayment' className='bg-light'>
       {
-        !otp.success && otp.status === "Time out" && <Failed type={type} retry={retry} bookingId={id} amount={"100"}/>
+        !otp.success && otp.status === "Time out" && <Failed type={type} redirect={redirect} retry={retry} bookingId={id} amount={"100"}/>
       }
       {
         otp.success && <Success type={type} bookingId={id} amount={"100"} redirect={redirect}/>

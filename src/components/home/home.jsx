@@ -88,7 +88,7 @@ const prevDishHandler = () => {
             <h2>Welcome to</h2>
             <h1 className='h1'><span style={{color:"#ffc61b"}}>R</span>estaurant</h1>
             <p className='p'>Experience the taste of luxury with our exquisite dishes made from the freshest ingredients.</p>
-            <h2 style={{display: "flex", alignItems: "center", gap: "1rem"}}><MdDeliveryDining className='bg-yellow' style={{fontSize: "40px", borderRadius:"8px", padding: "4px"}}/> Delivery in 30 Min.</h2>
+            <h2 style={{display: "flex", alignItems: "center", gap: "1rem"}}><MdDeliveryDining className='bg-yellow' style={{fontSize: "40px", borderRadius:"8px", padding: "4px"}}/> Delivery in 10 Min.</h2>
                 <h1><div>Order Over ₹299/-</div><div> Get 50% Off</div></h1>
                   <div className='ca-btn-g'>
                     <button className='btn-yellow' onClick={() => navigate("/food-order")} style={{marginRight:"1rem"}}>Order Foods</button>
