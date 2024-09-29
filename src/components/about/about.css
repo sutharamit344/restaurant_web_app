@@ -1,0 +1,32 @@
+.project-explanation {
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-explanation  h1 {
+    text-align: center;
+  }
+  
+.project-explanation h2 {
+    padding-top: 1rem;
+    padding-bottom: 10px;
+  }
+  
+  .project-explanation  p {
+    line-height: 1.6;
+  }
+  
+  .project-explanation  ul {
+    margin-left: 20px;
+  }
+  
+  .project-explanation  ul li {
+    margin-bottom: 8px;
+    padding: 2px;
+  }
+  
+  .project-explanation  strong {
+    font-weight: bold;
+  }
+  

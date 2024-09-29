@@ -24,9 +24,13 @@ export default function CartProvider({children}) {
     }
 
     const getCartItems = () => {
-        myCart.current = getCarts["cart"+loginId] ? getCarts["cart"+loginId] : []
+        const carts = getCarts()
+        myCart.current = carts["cart"+loginId] ? carts["cart"+loginId] : []
         return myCart.current
     }
+
+    
+    const [items, setItems] = useState(getCartItems)
 
     const getOrders = () => {
         ordersdata.current = localStorage.getItem("orders")
@@ -44,13 +48,11 @@ export default function CartProvider({children}) {
 
     const [orders, setOrders] = useState(getMyOrders)
 
-    const [items, setItems] = useState(getCartItems)
-
     const [subTotal, setSubTotal] = useState(0)
 
     useEffect(() => {
         localStorage.setItem("cartItem", JSON.stringify({...cartItems.current, ["cart"+loginId]: items}))
-    },[items, orders])
+    },[items])
 
     useEffect(() => {
         setItems(getCartItems)

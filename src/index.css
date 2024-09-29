@@ -153,6 +153,11 @@ body{
   padding: 2rem 15%;
   overflow: hidden;
 }
+#checkout,
+#login-section,
+#table-section{
+  min-height: 100%;
+}
 .container{
   grid-column: 1 / span 12;
 }
@@ -384,7 +389,7 @@ textarea{
   gap: 1rem 2rem;
 }
 .form-col-2.overview{
-  gap: 0 1rem;
+  row-gap: 0;
 }
 .form-col-2 .h2{
   margin-bottom: 1rem;
@@ -560,11 +565,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 550px) {
   .form-col-1{
-    grid-template-columns: 215px;
+    grid-template-columns: 60vw;
   }
   .form-col-2{
-    grid-template-columns: 115px 115px;
+    grid-template-columns: 30vw 30vw;
   }
+  #form-body .image{
+    display: none;
+  }  
   .form-control-half,
   .form-btn,
   .form-link,

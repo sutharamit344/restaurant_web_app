@@ -18,13 +18,15 @@ export default function Checkout() {
 
   const valid = {
     isFname: field.fname,
+    isAddress: bill.address,
     isLname: field.lname,
     isMobile: bill.mobile,
     isEmail: bill.email,
     isRquest: bill.message,
-    isDelivery: field.fname && bill.mobile? true : false,
+    isDelivery: field.fname && bill.mobile && bill.address? true : false,
     isCardDetail: field.cardType && field.cardHolder && field.exMonth && field.exYear && field.cvv && field.cardNum1 && field.cardNum2 && field.cardNum3 && field.cardNum4? true : false
 }
+
   useEffect(() => {
     setBill({...bill,
       dfee: 40,
@@ -230,6 +232,7 @@ export default function Checkout() {
                           autoComplete='address'/>
                         <span className="input-icon"><IoLocation/></span>
                         </div>
+                        {field.submited && !valid.isAddress && <div className="error-msg">Mobile number is required.</div>}
                     </div>
                     <div className="form-control col-2">
                         <label htmlFor="message">Special message</label>

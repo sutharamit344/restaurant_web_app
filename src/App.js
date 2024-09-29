@@ -12,6 +12,7 @@ import Loader from "./components/loader/loader";
 import ConfPayment from "./components/congpayment/confpayment";
 import Orders from "./components/orders/orders";
 import Clear from "./clear";
+import About from "./components/about/about";
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
       <Route path="/delivery-payment" element={<Checkout/>} />
       <Route path="/delivery-overview" element={<Checkout/>} />
       <Route path="/clearstorage" element={<Clear/>} />
+      <Route path="/about" element={<About/>} />
     </Routes>
     </BrowserRouter>
     </div>

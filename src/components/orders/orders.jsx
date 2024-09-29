@@ -32,20 +32,20 @@ export default function Orders() {
                 {
                     orders.length && orders.map((order, i) => {
                         return (
-                            <div key={i} className='order-card bg-item'>
+                            <div key={order.objId} className='order-card bg-item'>
                                     <div className='item-g'>
                                     <div className='b-item'><span><img src="/assets/img/food-cart.svg" className={`btn-icon svg`} alt="food cart" /></span> {order.cart && order.cart.length} Items</div>
                                     
                                     <MdArrowDropDown className='open-items' onClick={() => setOpenItem( openItem === i+1 ? null : i+1)}/>
                                     <div className={`cart-items bg-item ${i+1 === openItem ? "h-auto" : "h-0"}`}>
                                         {
-                                            menu.map((cate, ci) => {
+                                            menu.map((cate) => {
                                                 const find = order.cart && order.cart.some((item) => {
                                                     return String(item.itemId)[0] === String(cate.id)
                                                 })
                                                 if(find){
                                                     return (
-                                                        <div key={ci}>
+                                                        <div key={order.objId+cate.id}>
                                                         <div className="category-h ">{cate.category}</div>
                                                         {
                                                             order.cart.map((item, i) => {
@@ -118,22 +118,19 @@ export default function Orders() {
 const DeliveryBike = ({order}) => {
     const navigate = useNavigate()
     const {cancelOrder} = useContext(CartContext)
-
+    
     const getTimeDeff = () => {
         const timeDifferenceInSeconds = (new Date() - new Date(order.payTime)) / 1000;
         const newLeftPosition = Math.floor(timeDifferenceInSeconds / (600 / 100));
         return newLeftPosition
     }
 
-    const [bikeLeft, setBikeLeft] = useState()
+    const [bikeLeft, setBikeLeft] = useState(0)
 
     useEffect(() => {
-    setBikeLeft(getTimeDeff);
+        setBikeLeft(getTimeDeff())
     },[])
 
-    const goToPayment = (objId) => {
-        navigate(`/conf-payment/${objId}/orders/Order/orders`)
-    }
     useEffect(() => {
         if(bikeLeft < 101 && order.paymentStatus && order.orderStatus){
         if (order.payTime) {
@@ -143,7 +140,11 @@ const DeliveryBike = ({order}) => {
 
             return () => clearInterval(interval);
         }}
-    }, [order.payTime]);
+    }, [order.payTime, order]);
+
+    const goToPayment = (objId) => {
+        navigate(`/conf-payment/${objId}/orders/Order/orders`)
+    }
 
     return (
         <>
@@ -177,7 +178,7 @@ const DeliveryBike = ({order}) => {
             <div className='progress-bar'>
             <span className={`${order.orderStatus && bikeLeft > 0 ? "d-status-true" : "d-status-false"}`}><GiCampCookingPot/></span>
             <div className='delivery-route'>
-            <span className='bike'  style={{ left: bikeLeft + "%" }} ><MdDeliveryDining/></span>
+            <span className='bike'  style={{ left: order.orderStatus && bikeLeft + "%" }} ><MdDeliveryDining/></span>
             </div>
             <span className={`${order.orderStatus && bikeLeft > 99 ? "d-status-true" : "d-status-false"}`}><IoHome/></span>
             </div>

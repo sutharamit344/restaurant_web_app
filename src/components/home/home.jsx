@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import "./home.css"
 import { IoIosArrowBack,IoIosArrowForward } from "react-icons/io";
 import ReviewCard from '../reviewcard/reviewcard';
@@ -48,7 +48,7 @@ export const fastFoodItems = [
   },
   {
     id: 8,
-    name: "Nuggets",
+    name: "Nuddles",
     imageUrl: "/assets/fastfood/nuddles.png"
   },
   {
@@ -69,6 +69,7 @@ export default function Home() {
 const [nextDish, setNextDish] = useState(0)
 const {trending} = useContext(MenuContext)
 const navigate = useNavigate()
+const prevDish = useRef(null)
 
 const nextDishHandler = () => {
   nextDish < fastFoodItems.length-1 &&
@@ -79,6 +80,20 @@ const prevDishHandler = () => {
   nextDish > 0 &&
   setNextDish(nextDish-1)
 }
+
+useEffect(() => {
+  let intervalId;
+  if (nextDish < fastFoodItems.length-1) {
+      intervalId = setInterval(() => {
+          nextDishHandler();
+      }, 3000);
+  } else {
+      setNextDish(0);
+  }
+  return () => {
+    clearInterval(intervalId);
+};
+},[nextDishHandler])
 
 
   return (
@@ -92,7 +107,7 @@ const prevDishHandler = () => {
                 <h1><div>Order Over ₹299/-</div><div> Get 50% Off</div></h1>
                   <div className='ca-btn-g'>
                     <button className='btn-yellow' onClick={() => navigate("/food-order")} style={{marginRight:"1rem"}}>Order Foods</button>
-                    <button className='btn-yellow' onClick={() => navigate("/booking")}>Reserve aTable</button>
+                    <button className='btn-yellow' onClick={() => navigate("/booking")}>Book Table</button>
                 </div>
             </div>
         <div id='instant-food'>

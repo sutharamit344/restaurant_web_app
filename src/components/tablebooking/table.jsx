@@ -18,9 +18,17 @@ export default function Table() {
     const [booking, setBooking] = useState(bookingObj)
 
     const [field, setField] = useState(complexField)
-    
+
+    const dateDeff = (new Date(booking.date) - new Date(new Date().toISOString().split("T")[0]) >= 0) && ((new Date(booking.date) - new Date(new Date().toISOString().split("T")[0])) <= 86400000*7)
+    const getCurrentTime = () => {
+        const time = new Date()
+        let hh = time.getHours()
+        const mm = time.getMinutes()
+        return `${hh}${mm}`
+    }
+
     const valid = {
-        isDate: booking.date,
+        isDate: dateDeff,
         isTime: booking.time,
         isGuest: booking.guest,
         isOccation: booking.occation,
@@ -29,7 +37,7 @@ export default function Table() {
         isMobile: booking.mobile,
         isEmail: booking.email,
         isRquest: booking.message,
-        isBooking: booking.date && booking.time && booking.guest && booking.occation ? true : false,
+        isBooking: booking.date && booking.time && booking.guest && booking.occation && dateDeff ? true : false,
         isContact: field.fname && booking.mobile? true : false,
         isCardDetail: field.cardType && field.cardHolder && field.exMonth && field.exYear && field.cvv && field.cardNum1 && field.cardNum2 && field.cardNum3 && field.cardNum4? true : false
     }
@@ -149,6 +157,9 @@ export default function Table() {
     }
 
       useEffect(() => {
+        if(booking.time && booking.date && !valid.isDate){
+            setBooking({...booking, time : ""})
+        }
         if(confAll){
             if(location.pathname !== "/booking"){
                 navigate(-1)
@@ -171,12 +182,14 @@ export default function Table() {
                     <h2 className="h2 col-2">Table booking</h2>
                     <div className="form-control">
                         <label htmlFor="bookingDate">Date</label>
-                        <div className="input-group">
+                        <div className="input-group"
+                        style={{outlineColor: booking.date && !valid.isDate ? "red" : ""}} >
                         <input type="date" name="date" id="bookingDate"
                         value={booking.date} onChange={handleInputChange}/>
                         <span className="d-icon-650"><IoCalendar/></span>
                         </div>
-                        {field.submited && !valid.isDate && <div className="error-msg">Date is required.</div>}
+                        {field.submited && booking.date && !valid.isDate && <div className="error-msg">Select current or next 7 days</div>}
+                        {field.submited && !booking.date && <div className="error-msg">Date is required.</div>}
                      </div>
                     <div className="form-control">
                     <label htmlFor="timeSlots">Time Slots</label>
@@ -185,9 +198,13 @@ export default function Table() {
                         value={booking.time} onChange={handleInputChange}>
                             <option value="">Select time</option>
                             {
-                                timeSlots.map((time, i) => {
+                                valid.isDate && timeSlots.map((time, i) => {
+                                    const validTime = `${time.split(" ")[1] === "PM" ? Number(time.split(":")[0])+12 : time.split(":")[0]}${time.split(":")[1].split(" ")[0]}`
+                                    const timeCheck = Number(validTime) < Number(getCurrentTime()) + 60 && new Date().toISOString().split("T")[0] === booking.date
+                                    const bookingClose = timeCheck && Number(validTime) > Number(getCurrentTime())
+                                    
                                     return (
-                                        <option key={i} value={time}>{time}</option>
+                                        <option key={i} value={time} disabled={timeCheck}>{time} {bookingClose ? "Pre Closed" : ""}</option>
                                     )
                                 })
                             }

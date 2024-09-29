@@ -3,19 +3,31 @@
   "name": "Restaurant",
   "icons": [
     {
-      "src": "assets/img/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "assets/img/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/x-icon"
     },
     {
-      "src": "assets/img/logo.png",
+      "src": "assets/img/logo-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "assets/img/logo-no-back.png",
+      "src": "assets/img/logo-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/img/website.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/mobile.png",
+      "sizes": "720x1280",
+      "type": "image/png"
     }
   ],
   "start_url": ".",

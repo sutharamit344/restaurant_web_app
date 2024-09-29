@@ -29,7 +29,7 @@ export default function CartItem({offerPrice, itemDetail, qty, handleItem}) {
                         <del>₹{itemDetail.price*qty}</del>
                             </div>
                             <div className="cart-item-offer-price">
-                                <b>₹{offerPrice}</b>
+                                <b>₹{offerPrice.toFixed()}</b>
                             </div>
                         </div>
                     </div>
