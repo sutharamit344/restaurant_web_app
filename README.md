@@ -7,7 +7,8 @@ HTML/CSS: Used for structuring and styling the application.
 JavaScript: Enables dynamic content updates and interactivity.
 React: Manages the application state and provides a component-based architecture.
 Local Storage: Facilitates persistent data storage across sessions.
-3. Architecture
+
+4. Architecture
 The architecture of the web app follows a component-based structure typical of React applications. Each feature is encapsulated within reusable components:
 
 Header Component: Contains the Logo and navigation bar.
@@ -18,6 +19,7 @@ Cart Component: Manages the user's selected items, quantities, and subtotal calc
 Booking Component: Handles table reservation.
 Food menu Component: Show menu items.
 Footer Component: Contains Logo, Share, quick links and developer contact information.
+
 4. Key Features
 Responsive Design: The layout adapts to various screen sizes using CSS media queries and React's responsive design principles, ensuring usability on desktops, tablets, and mobile devices.
 Food Ordering System: Users can select items from the menu, manage their cart, and proceed to checkout. The cart functionality includes:
@@ -28,7 +30,10 @@ Table Booking System: Users can reserve tables by selecting a time slot, enterin
 User Authentication: While not backed by a database, the application includes form validation for sign-up and login processes, ensuring data integrity.
 Local Storage: User data, including cart items and bookings, are stored in the browser's local storage, allowing for a persistent experience.
 Dark Mode Toggle: A user-friendly toggle to switch between light and dark themes.
-5. Development Process
+Open Graph integration for enhanced social media sharing and SEO.
+Technologies
+
+6. Development Process
 I built each feature as a separate component, making it easy to maintain and update. This modular approach enhances reusability and readability.
 
 GitHub Integration
