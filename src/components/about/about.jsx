@@ -57,6 +57,7 @@ const About = () => {
           <li><strong>User Authentication</strong>: While not backed by a database, the application includes form validation for sign-up and login processes, ensuring data integrity.</li>
           <li><strong>Local Storage</strong>: User data, including cart items and bookings, are stored in the browser's local storage, allowing for a persistent experience.</li>
           <li><strong>Dark Mode Toggle</strong>: A user-friendly toggle to switch between light and dark themes.</li>
+          <li><strong>Open Graph/ Meta tag</strong>: integration for enhanced social media sharing and SEO. Technologies.</li>
         </ul>
       </section>
 
